@@ -239,7 +239,7 @@ registerHook("BLOCK_GAINS_CURRENT", "fireTick", "code4", -1, 82, -36);
 function ArrowPickUp1(data)
 	local player = Player:new(data["player"]);
 	player:addItem(262, 10, 1);
-	player:sendMessage("&eYou walked over a dead body, you looted 1 Arrow.");
+	player:sendMessage("&eYou walked over a dead body and looted 1 Arrow.");
 end
 
 registerHook("REGION_ENTER", "ArrowPickUp1", "Code4-arrowpickup1");
@@ -247,7 +247,7 @@ registerHook("REGION_ENTER", "ArrowPickUp1", "Code4-arrowpickup1");
 function ArrowPickUp2(data)
 	local player = Player:new(data["player"]);
 	player:addItem(262, 10, 1);
-	player:sendMessage("&eYou walked over a dead body, you looted 1 Arrow.");
+	player:sendMessage("&eYou walked over a dead body and you looted 1 Arrow.");
 end
 
 registerHook("REGION_ENTER", "ArrowPickUp2", "Code4-arrowpickup2");
@@ -255,7 +255,7 @@ registerHook("REGION_ENTER", "ArrowPickUp2", "Code4-arrowpickup2");
 function ArrowPickUp3(data)
 	local player = Player:new(data["player"]);
 	player:addItem(262, 10, 1);
-	player:sendMessage("&eYou walked over a dead body, you looted 1 Arrow.");
+	player:sendMessage("&eYou walked over a dead body and you looted 1 Arrow.");
 end
 
 registerHook("REGION_ENTER", "ArrowPickUp3", "Code4-arrowpickup3");
@@ -263,7 +263,7 @@ registerHook("REGION_ENTER", "ArrowPickUp3", "Code4-arrowpickup3");
 function ArrowPickUp4(data)
 	local player = Player:new(data["player"]);
 	player:addItem(262, 10, 1);
-	player:sendMessage("&eYou walked over a dead body, you looted 1 Arrow.");
+	player:sendMessage("&eYou walked over a dead body and you looted 1 Arrow.");
 end
 
 registerHook("REGION_ENTER", "ArrowPickUp4", "Code4-arrowpickup4");

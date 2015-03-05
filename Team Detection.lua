@@ -3,7 +3,6 @@ local blueTeamPlayers = {};
 
 -- Create a player.
 local myPlayer = Player:new('Centralan');
-local myPlayer = Player:new('Kruithne');
 
 -- Add the player to the array.
 table.insert(blueTeamPlayers, myPlayer);

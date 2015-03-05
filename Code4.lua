@@ -1,3 +1,34 @@
+-- Create a new array.
+local blueTeamPlayers = {};
+
+function addPlayerToBlueTeam(playerName)
+	table.insert(blueTeamPlayers, Player:new(playerName));
+end
+
+addPlayerToBlueTeam('Kruithne');
+addPlayerToBlueTeam('JettKuso');
+
+-- Loop all the players in the array and send them a message.
+for index, player in pairs(blueTeamPlayers) do
+	player:sendMessage('Blue');
+end
+
+local greenTeamPlayers = {};
+
+function addPlayerToGreenTeam(playerName)
+	table.insert(greenTeamPlayers, Player:new(playerName));
+end
+
+addPlayerToGreenTeam('Centralan');
+addPlayerToGreenTeam('MrMarc45689');
+
+-- Loop all the players in the array and send them a message.
+for index, player in pairs(greenTeamPlayers) do
+	player:sendMessage('Green');
+end
+
+
+
 -- AI
 --
 

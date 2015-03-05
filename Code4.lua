@@ -197,3 +197,38 @@ end
 
 registerHook("INTERACT", "Green_Team_Gear", 54, "Code4", -54, 65, 0);
 
+
+-- Effects for Flags
+--
+
+local world = World:new('Code4');
+
+local effects = {
+        {"Green Flag", "CLOUD", 0.05, 20, 5},
+        {"Green Flag", "HAPPY_VILLAGER", 20, 20, 5},
+        {"Blue Flag", "CLOUD", 0.05, 20, 5},
+        {"Blue Flag", "DRIP_WATER", 20, 20, 5}
+};
+
+function fireTick()
+	processPlayers({world:getPlayers()});
+end
+
+function processPlayers(players)
+	for index, playerName in pairs(players) do
+		for key, effect in pairs(effects) do
+			if playerName ~= nil then
+				local player = Player:new(playerName);
+				if player ~= nil and player:isOnline() then
+					if player:hasItemWithName("Â§c" .. effect[1]) then
+						local world, x, y, z = player:getLocation();
+						local playerLoc = Location:new(world, x, y + effect[5], z);
+						playerLoc:playEffect(effect[2], effect[3], effect[4], 20);
+					end
+				end
+			end
+		end
+	end
+end
+
+registerHook("BLOCK_GAINS_CURRENT", "fireTick", "code4", -1, 82, -36);

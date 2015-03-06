@@ -90,7 +90,7 @@ function chatMonitor(data)
 				table.insert(tempPlayerList, playerName);
 			end
 			
-			player:sendMessage("Blue team: " .. table.concat(tempPlayerList, ",");
+			player:sendMessage("Blue team: " .. table.concat(tempPlayerList, ","));
 		elseif hasPrefix(message, "#ListGreen") then
 			local tempPlayerList = {};
 			
@@ -98,7 +98,7 @@ function chatMonitor(data)
 				table.insert(tempPlayerList, playerName);
 			end
 			
-			player:sendMessage("green team: " .. table.concat(tempPlayerList, ",");
+			player:sendMessage("green team: " .. table.concat(tempPlayerList, ","));
 		end
 	end
 end

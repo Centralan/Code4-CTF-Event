@@ -31,7 +31,7 @@ end
 --
 
 local function hasPrefix(subject, prefix)
-	return string.sub(data.message, 1, string.len(prefix)) == prefix;
+	return string.sub(data.subject, 1, string.len(prefix)) == prefix;
 end
 
 function chatHook(data)

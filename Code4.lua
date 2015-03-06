@@ -34,18 +34,31 @@ local function hasPrefix(subject, prefix)
 	return string.sub(subject, 1, string.len(prefix)) == prefix;
 end
 
-function chatHook(data)
+function BlueTeamAdd(data)
 	-- Make sure it's you giving the command.
 	if data.player == "Centralan" then
 		if hasPrefix(data.message, "#AddBluePlayer") then
 			local playerName = string.sub(data.message, 14, string.len(data.message));
                         local player = Player:new(data.player);
-                        player:sendMessage("Adding " .. playerName .. " to the blue team!")
+                        player:sendMessage("Adding " .. playerName .. " to the &9Blue team!")
 		end
 	end
 end
 
-registerHook("CHAT_MESSAGE", "chatHook", "Code4");
+registerHook("CHAT_MESSAGE", "BlueTeamAdd", "Code4");
+
+function GreenTeamAdd(data)
+	-- Make sure it's you giving the command.
+	if data.player == "Centralan" then
+		if hasPrefix(data.message, "#AddGreenPlayer") then
+			local playerName = string.sub(data.message, 15, string.len(data.message));
+                        local player = Player:new(data.player);
+                        player:sendMessage("Adding " .. playerName .. " to the &aGreen team!")
+		end
+	end
+end
+
+registerHook("CHAT_MESSAGE", "GreenTeamAdd", "Code4");
 
 
 

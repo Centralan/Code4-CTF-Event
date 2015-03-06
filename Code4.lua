@@ -40,10 +40,12 @@ function chatMonitor(data)
 		if hasPrefix(data.message, "#AddBluePlayer") then
 			local playerName = string.sub(data.message, 14, string.len(data.message));
                         local player = Player:new(data.player);
+                        addPlayerToBlueTeam(playerName);
                         player:sendMessage("Adding " .. playerName .. " to the &9Blue team!")
                 elseif hasPrefix(data.message, "#AddGreenPlayer") then
                 	local playerName = string.sub(data.message, 15, string.len(data.message));
                 	local player = Player:new(data.player);
+                        addPlayerToGreenTeam(playerName);
                 	player:sendMessage("Adding " .. playerName .. " to the &aGreen team!");
 		end
 	end

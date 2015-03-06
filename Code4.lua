@@ -38,10 +38,9 @@ function chatHook(data)
 	-- Make sure it's you giving the command.
 	if data.player == "Centralan" then
 		if hasPrefix(data.message, "#AddBluePlayer") then
-			-- The 14 below is the length of #AddBluePlayer, if you change the string, change the length too.
 			local playerName = string.sub(data.message, 14, string.len(data.message));
-			-- playerName should now be the correct name of the player who you want to add
-			-- to the blue team, so do what you need with that!
+                        local player = Player:new(data.player);
+                        player:sendMessage("Adding " .. playerName .. " to the blue team!")
 		end
 	end
 end

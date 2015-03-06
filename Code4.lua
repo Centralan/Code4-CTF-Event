@@ -49,24 +49,24 @@ function chatMonitor(data)
 		local player = Player:new(data.player);
 		
 		if hasPrefix(data.message, "#AddBluePlayer") then
-			local playerName = string.sub(data.message, 14, string.len(data.message));
+			local playerName = string.sub(data.message, 15, string.len(data.message));
 			
 			addPlayerToBlueTeam(playerName);
 			player:sendMessage("Adding " .. playerName .. " to the &9Blue team!")
 		elseif hasPrefix(data.message, "#AddGreenPlayer") then
-			local playerName = string.sub(data.message, 15, string.len(data.message));
+			local playerName = string.sub(data.message, 16, string.len(data.message));
 			
 			addPlayerToGreenTeam(playerName);
 			player:sendMessage("Adding " .. playerName .. " to the &aGreen team!");
 		elseif hasPrefix(data.message, "#RemoveBluePlayer") then
-			local playerName = string.sub(data.message, 17, string.len(data.message));
-			
-			removeFromBlueTeam(playerName);
-			player:sendMessage("Removing " .. playerName .. " from the &9Blue team!");
-		elseif hasPrefix(data.message, "#RemoveGreenPlayer") then
 			local playerName = string.sub(data.message, 18, string.len(data.message));
 			
-			removeFromGreenTeam(playerName);
+			removePlayerFromBlueTeam(playerName);
+			player:sendMessage("Removing " .. playerName .. " from the &9Blue team!");
+		elseif hasPrefix(data.message, "#RemoveGreenPlayer") then
+			local playerName = string.sub(data.message, 19, string.len(data.message));
+			
+			removePlayerFromGreenTeam(playerName);
 			player:sendMessage("Removing " .. playerName .. " from the &aGreen team!");
 		end
 	end

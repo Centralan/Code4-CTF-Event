@@ -5,12 +5,12 @@ function addPlayerToBlueTeam(playerName)
 	table.insert(blueTeamPlayers, Player:new(playerName));
 end
 
-addPlayerToBlueTeam('Kruithne');
+addPlayerToBlueTeam('Centralan');
 addPlayerToBlueTeam('JettKuso');
 
 -- Loop all the players in the array and send them a message.
 for index, player in pairs(blueTeamPlayers) do
-	player:sendMessage('Blue');
+	player:sendMessage('&9You are now on the Blue team!');
 end
 
 local greenTeamPlayers = {};
@@ -19,12 +19,12 @@ function addPlayerToGreenTeam(playerName)
 	table.insert(greenTeamPlayers, Player:new(playerName));
 end
 
-addPlayerToGreenTeam('Centralan');
+addPlayerToGreenTeam('Kruithne');
 addPlayerToGreenTeam('MrMarc45689');
 
 -- Loop all the players in the array and send them a message.
 for index, player in pairs(greenTeamPlayers) do
-	player:sendMessage('Green');
+	player:sendMessage('&aYou are now on the Green team!');
 end
 
 
@@ -298,3 +298,13 @@ function ArrowPickUp4(data)
 end
 
 registerHook("REGION_ENTER", "ArrowPickUp4", "Code4-arrowpickup4");
+
+-- Flag Pickups
+--
+
+-- Flag Drops
+--
+
+-- Flag Carrier Deaths
+--
+

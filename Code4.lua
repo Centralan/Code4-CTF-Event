@@ -50,11 +50,16 @@ end
 function chatMonitor(data)
 	-- Make sure it's you giving the command.
 	if data.player == "Centralan" then
+		print("DEBUG: Player Centralan detected");
 		local player = Player:new(data.player);
 		local message = data.message;
 		
+		print("DEBUG: (Message) " .. message);
+		
 		if hasPrefix(message, "#AddBluePlayer") then
 			local playerName = splitPlayerName(message, 15);
+			
+			print("DEBUG: (PlayerName) " .. playerName);
 			
 			addPlayerToBlueTeam(playerName);
 			player:sendMessage("Adding " .. playerName .. " to the &9Blue team!");

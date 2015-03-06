@@ -57,7 +57,7 @@ function chatMonitor(data)
 			local playerName = splitPlayerName(message, 15);
 			
 			addPlayerToBlueTeam(playerName);
-			player:sendMessage("Adding " .. playerName .. " to the &9Blue team!")
+			player:sendMessage("Adding " .. playerName .. " to the &9Blue team!");
 		elseif hasPrefix(message, "#AddGreenPlayer") then
 			local playerName = splitPlayerName(message, 16);
 			

@@ -2,7 +2,17 @@
 local blueTeamPlayers = {};
 
 function addPlayerToBlueTeam(playerName)
-	table.insert(blueTeamPlayers, Player:new(playerName));
+	--table.insert(blueTeamPlayers, playerName);
+	blueTeamPlayers[playerName] = true;
+end
+
+function removePlayerFromBlueTeam(playerName)
+	--table.remove(blueTeamPlayers, playerName);
+	blueTeamPlayers[playerName] = nil;
+end
+
+function isPlayerOnBlueTeam(playerName)
+	return 	blueTeamPlayers[playerName] ~= nil;
 end
 
 addPlayerToBlueTeam('Centralan');
@@ -16,7 +26,16 @@ end
 local greenTeamPlayers = {};
 
 function addPlayerToGreenTeam(playerName)
-	table.insert(greenTeamPlayers, Player:new(playerName));
+	--table.insert(greenTeamPlayers, Player:new(playerName));
+	greenTeamPlayers[playerName] = true;
+end
+
+function removePlayerFromGreenTeam(playerName)
+	greenTeamPlayers[playerName] = nil;	
+end
+
+function isPlayerOnGreenTeam(playerName)
+	return greenTeamPlayers[playerName] ~= nil;	
 end
 
 addPlayerToGreenTeam('Kruithne');

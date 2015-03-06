@@ -33,6 +33,7 @@ end
 --
 
 local world = World:new('Code4');
+local soundblock = Location:new(world, 0, 93, -30);
 local Overlord = 'Horae'
 
 function a_broadcast(msg)
@@ -52,42 +53,48 @@ end
 function EventOverlord_Standby(data)
         local player = Player:new(data.player);
         a_broadcast_npc(Overlord, "Code 4 is getting ready, please stand by!", player);
+         soundblock:playSound('ZOMBIE_UNFECT', 10, 10);
 end
 
 function EventOverlord_Teams(data)
         local player = Player:new(data.player);
         a_broadcast_npc(Overlord, "Players are now being split into 2 teams at random!", player);
+         soundblock:playSound('ZOMBIE_UNFECT', 10, 10);
 end
 
 function EventOverlord_Gear(data)
         local player = Player:new(data.player);
         a_broadcast_npc(Overlord, "Both Teams have started gearing up!", player);
+         soundblock:playSound('ZOMBIE_UNFECT', 10, 10);
 end
 
 
 function EventOverlord_Start30(data)
         local player = Player:new(data.player);
         a_broadcast_npc(Overlord, "Code 4 initializing in 30 Seconds!", player);
+         soundblock:playSound('NOTE_PLING', 1000, 10);
+         soundblock:playSound('ORB_PICKUP', 1000, 10);
 end
 
 function EventOverlord_Start15(data)
         local player = Player:new(data.player);
         a_broadcast_npc(Overlord, "Code 4 initializing in 15 Seconds!", player);
+         soundblock:playSound('NOTE_PLING', 1000, 10);
+         soundblock:playSound('ORB_PICKUP', 1000, 10);
 end
 
 function EventOverlord_Start10(data)
         local player = Player:new(data.player);
         a_broadcast_npc(Overlord, "Code 4 initializing in 10 Seconds!", player);
+         soundblock:playSound('NOTE_PLING', 1000, 10);
+         soundblock:playSound('ORB_PICKUP', 1000, 10);
 end
 
 function EventOverlord_Start5(data)
         local player = Player:new(data.player);
         a_broadcast_npc(Overlord, "Code 4 initializing in 5 Seconds!", player);
-end
-
-function EventOverlord_Gates(data)
-        local player = Player:new(data.player);
-        a_broadcast_npc(Overlord, "The gates have dropped, let the games begin!", player);
+         soundblock:playSound('NOTE_PLING', 1000, 10);
+         soundblock:playSound('ORB_PICKUP', 1000, 10);
 end
 
 function EventOverlord_bscore(data)
@@ -105,7 +112,6 @@ registerHook("INTERACT", "EventOverlord_Start30", 77, "Code4", -1, 86, -35);
 registerHook("INTERACT", "EventOverlord_Start15", 77, "Code4", 0, 86, -35);
 registerHook("INTERACT", "EventOverlord_Start10", 77, "Code4", 1, 86, -35);
 registerHook("INTERACT", "EventOverlord_Start5", 77, "Code4", 2, 86, -35);
-registerHook("INTERACT", "EventOverlord_Gates", 77, "Code4", 3, 86, -35);
 registerHook("INTERACT", "EventOverlord_bscore", 77, "Code4", 3, 86, -34);
 registerHook("INTERACT", "EventOverlord_gscore", 77, "Code4", -3, 86, -34);
 registerHook("INTERACT", "EventOverlord_Standby", 77, "Code4", -4, 86, -35);

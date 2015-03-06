@@ -18,11 +18,6 @@ end
 addPlayerToBlueTeam('Centralan');
 addPlayerToBlueTeam('JettKuso');
 
--- Loop all the players in the array and send them a message.
-for index, player in pairs(blueTeamPlayers) do
-	player:sendMessage('&9You are now on the Blue team!');
-end
-
 local greenTeamPlayers = {};
 
 function addPlayerToGreenTeam(playerName)
@@ -40,11 +35,6 @@ end
 
 addPlayerToGreenTeam('Kruithne');
 addPlayerToGreenTeam('MrMarc45689');
-
--- Loop all the players in the array and send them a message.
-for index, player in pairs(greenTeamPlayers) do
-	player:sendMessage('&aYou are now on the Green team!');
-end
 
 -- Team Chat Detection
 --

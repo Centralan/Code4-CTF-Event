@@ -27,6 +27,28 @@ for index, player in pairs(greenTeamPlayers) do
 	player:sendMessage('&aYou are now on the Green team!');
 end
 
+-- Team Chat Detection
+--
+
+local function hasPrefix(subject, prefix)
+	return string.sub(data.message, 1, string.len(prefix)) == prefix;
+end
+
+function chatHook(data)
+	-- Make sure it's you giving the command.
+	if data.player == "Centralan" then
+		if hasPrefix(data.message, "#AddBluePlayer") then
+			-- The 14 below is the length of #AddBluePlayer, if you change the string, change the length too.
+			local playerName = string.sub(data.message, 14, string.len(data.message));
+			-- playerName should now be the correct name of the player who you want to add
+			-- to the blue team, so do what you need with that!
+		end
+	end
+end
+
+registerHook("CHAT_MESSAGE", "chatHook", "Code4");
+
+
 
 
 -- AI

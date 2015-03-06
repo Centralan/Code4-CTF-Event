@@ -43,31 +43,62 @@ local function hasPrefix(subject, prefix)
 	return string.sub(subject, 1, string.len(prefix)) == prefix;
 end
 
+local function splitPlayerName(message, len)
+	return string.sub(message, len, string.len(message));
+end
+
 function chatMonitor(data)
 	-- Make sure it's you giving the command.
 	if data.player == "Centralan" then
 		local player = Player:new(data.player);
+		local message = data.message;
 		
-		if hasPrefix(data.message, "#AddBluePlayer") then
-			local playerName = string.sub(data.message, 15, string.len(data.message));
+		if hasPrefix(message, "#AddBluePlayer") then
+			local playerName = splitPlayerName(message, 15);
 			
 			addPlayerToBlueTeam(playerName);
 			player:sendMessage("Adding " .. playerName .. " to the &9Blue team!")
-		elseif hasPrefix(data.message, "#AddGreenPlayer") then
-			local playerName = string.sub(data.message, 16, string.len(data.message));
+		elseif hasPrefix(message, "#AddGreenPlayer") then
+			local playerName = splitPlayerName(message, 16);
 			
 			addPlayerToGreenTeam(playerName);
 			player:sendMessage("Adding " .. playerName .. " to the &aGreen team!");
-		elseif hasPrefix(data.message, "#RemoveBluePlayer") then
-			local playerName = string.sub(data.message, 18, string.len(data.message));
+		elseif hasPrefix(message, "#RemoveBluePlayer") then
+			local playerName = splitPlayerName(message, 18);
 			
 			removePlayerFromBlueTeam(playerName);
 			player:sendMessage("Removing " .. playerName .. " from the &9Blue team!");
-		elseif hasPrefix(data.message, "#RemoveGreenPlayer") then
-			local playerName = string.sub(data.message, 19, string.len(data.message));
+		elseif hasPrefix(message, "#RemoveGreenPlayer") then
+			local playerName = splitPlayerName(message, 19);
 			
 			removePlayerFromGreenTeam(playerName);
 			player:sendMessage("Removing " .. playerName .. " from the &aGreen team!");
+		elseif hasPrefix(message, "#CheckTeam") then
+			local playerName = splitPlayerName(message, 11);
+			
+			if isPlayerOnGreenTeam(playerName) then
+				player:sendMessage(playerName .. " is currently on the green team.");
+			elseif isPlayerOnBlueTeam(playerName) then
+				player:sendMessage(playerName .. " is currently on the blue team.");
+			else
+				player:sendMessage(playerName .. " is not on a team.");
+			end
+		elseif hasPrefix(message, "#ListBlue") then
+			local tempPlayerList = {};
+			
+			for playerName, v in pairs(blueTeamPlayers) do
+				table.insert(tempPlayerList, playerName);
+			end
+			
+			player:sendMessage("Blue team: " .. table.concat(tempPlayerList, ",");
+		elseif hasPrefix(message, "#ListGreen") then
+			local tempPlayerList = {};
+			
+			for playerName, v in pairs(greenTeamPlayers) do
+				table.insert(tempPlayerList, playerName);
+			end
+			
+			player:sendMessage("green team: " .. table.concat(tempPlayerList, ",");
 		end
 	end
 end

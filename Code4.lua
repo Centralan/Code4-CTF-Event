@@ -62,6 +62,31 @@ end
 
 registerHook("CHAT_MESSAGE", "chatMonitor", "Code4");
 
+
+
+local function hasPrefix(subject, prefix)
+	return string.sub(subject, 1, string.len(prefix)) == prefix;
+end
+
+function chatMonitor1(data)
+	-- Make sure it's you giving the command.
+	if data.player == "Centralan" then
+		if hasPrefix(data.message, "#RemoveBluePlayer") then
+			local playerName = string.sub(data.message, 17, string.len(data.message));
+                        local player = Player:new(data.player);
+                        removeFromBlueTeam(playerName);
+                        player:sendMessage("Removing " .. playerName .. " to the &9Blue team!")
+                elseif hasPrefix(data.message, "#RemoveGreenPlayer") then
+                	local playerName = string.sub(data.message, 18, string.len(data.message));
+                	local player = Player:new(data.player);
+                        removeFromGreenTeam(playerName);
+                	player:sendMessage("Removing " .. playerName .. " to the &aGreen team!");
+		end
+	end
+end
+
+registerHook("CHAT_MESSAGE", "chatMonitor1", "Code4");
+
 -- AI
 --
 

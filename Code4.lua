@@ -15,9 +15,6 @@ function isPlayerOnBlueTeam(playerName)
 	return 	blueTeamPlayers[playerName] ~= nil;
 end
 
-addPlayerToBlueTeam('Centralan');
-addPlayerToBlueTeam('JettKuso');
-
 local greenTeamPlayers = {};
 
 function addPlayerToGreenTeam(playerName)
@@ -32,9 +29,6 @@ end
 function isPlayerOnGreenTeam(playerName)
 	return greenTeamPlayers[playerName] ~= nil;	
 end
-
-addPlayerToGreenTeam('Kruithne');
-addPlayerToGreenTeam('MrMarc45689');
 
 -- Team Chat Detection
 --

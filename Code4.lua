@@ -271,11 +271,12 @@ end
 
 registerHook("REGION_ENTER", "bsafe_arena2", "Code4-bsta2");
 
--- Chest Cloning
+-- Team Gear Up
 --
 
 local world = World:new('Code4');
 local BlueGearChest = Location:new(world, -4, 86, -39);
+local BlueTeamGearUp = Location:new(world, 40, 66, 0);
 local BluePlayers = {};
 
 function Blue_Team_Gear(data)
@@ -284,13 +285,15 @@ function Blue_Team_Gear(data)
 		BluePlayers[player.name] = true;
 		BlueGearChest:cloneChestToPlayer(player.name);
 		player:sendMessage("&dGet your gear on and get ready for the glass to vanish!");
+                BlueTeamGearUp:playSound('HORSE_SADDLE', 1, 0);
 	end
 end
 
 registerHook("REGION_ENTER", "Blue_Team_Gear", "Code4-blta");
 
 local world = World:new('Code4');
-local GreenGearChest = Location:new(world, -4, 86, -42);
+local GreenGearChest = Location:new(world, -4, 87, -42);
+local GreenTeamGearUp = Location:new(world, -40, 66, 0);
 local GreenPlayers = {};
 
 function Green_Team_Gear(data)
@@ -299,6 +302,7 @@ function Green_Team_Gear(data)
 		GreenPlayers[player.name] = true;
 		GreenGearChest:cloneChestToPlayer(player.name);
 		player:sendMessage("&dGet your gear on and get ready for the glass to vanish!");
+                GreenTeamGearUp:playSound('HORSE_SADDLE', 1, 0);
 	end
 end
 

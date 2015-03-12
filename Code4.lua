@@ -192,7 +192,7 @@ registerHook("INTERACT", "EventOverlord_Gear", 77, "Code4", -2, 86, -35);
 --
 
 local myWorld = World:new('Code4');
-local location = Location:new(myWorld, 50, 65, 0);
+local location = Location:new(myWorld, 44, 64, 0);
 
 function blue_lobby_teleport(data)
        local targetPlayer = Player:new(data.player);
@@ -202,7 +202,7 @@ end
 registerHook("REGION_ENTER", "blue_lobby_teleport", "Code4-blta");
 
 local myWorld = World:new('Code4');
-local location = Location:new(myWorld, -50, 65, 0);
+local location = Location:new(myWorld, -44, 64, 0);
 
 function green_lobby_teleport(data)
        local targetPlayer = Player:new(data.player);
@@ -275,7 +275,7 @@ registerHook("REGION_ENTER", "bsafe_arena2", "Code4-bsta2");
 --
 
 local world = World:new('Code4');
-local BlueGearChest = Location:new(world, 54, 65, 0);
+local BlueGearChest = Location:new(world, -4, 86, -39);
 local BluePlayers = {};
 
 function Blue_Team_Gear(data)
@@ -283,14 +283,14 @@ function Blue_Team_Gear(data)
 	if BluePlayers[player.name] == nil then
 		BluePlayers[player.name] = true;
 		BlueGearChest:cloneChestToPlayer(player.name);
-		player:sendMessage("&dAs fast as you can get your gear on and into place then jump into the water!");
+		player:sendMessage("&dGet your gear on and get ready for the glass to vanish!");
 	end
 end
 
-registerHook("INTERACT", "Blue_Team_Gear", 54, "Code4", 54, 65, 0);
+registerHook("REGION_ENTER", "Blue_Team_Gear", "Code4-blta");
 
 local world = World:new('Code4');
-local GreenGearChest = Location:new(world, -54, 65, 0);
+local GreenGearChest = Location:new(world, -4, 86, -42);
 local GreenPlayers = {};
 
 function Green_Team_Gear(data)
@@ -298,11 +298,11 @@ function Green_Team_Gear(data)
 	if GreenPlayers[player.name] == nil then
 		GreenPlayers[player.name] = true;
 		GreenGearChest:cloneChestToPlayer(player.name);
-		player:sendMessage("&dAs fast as you can get your gear on and into place then jump into the water!");
+		player:sendMessage("&dGet your gear on and get ready for the glass to vanish!");
 	end
 end
 
-registerHook("INTERACT", "Green_Team_Gear", 54, "Code4", -54, 65, 0);
+registerHook("REGION_ENTER", "Green_Team_Gear", "Code4-glta");
 
 -- Item Pickups
 --
@@ -385,3 +385,4 @@ registerHook("BLOCK_GAINS_CURRENT", "fireTick", "code4", -1, 82, -36);
 
 -- Flag Detection
 --
+

@@ -417,3 +417,13 @@ registerHook("PLAYER_ITEM_PICKUP", "blue_flag_pickup", "Code4");
 -- Flag Detection
 --
 
+-- Achievements
+--
+
+function ctf_event_prize(data)
+        local p = Player:new(data["player"]);
+        p:sendEvent("achievement.ctfeventmarch");
+end
+
+registerHook("REGION_ENTER", "ctf_event_prize", "spawn2-event_ctfportal");
+

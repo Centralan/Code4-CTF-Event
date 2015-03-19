@@ -402,6 +402,7 @@ end
 
 function get_green_flag(data)
 	local player = Player:new(data.player);
+        print(data.player);
         if isPlayerOnBlueTeam(player.name) then
                 greenfChest:cloneChestToPlayer(player.name);
 		player:sendMessage("&bYou have the Green Flag! Return it to the Blue base!");
@@ -421,6 +422,7 @@ registerHook("INTERACT", "get_green_flag", 77, "Code4", -46, 75, 1);
 --
 
 -- Achievements
+--
 
 function ctf_event_prize(data)
         local p = Player:new(data["player"]);
@@ -428,5 +430,5 @@ function ctf_event_prize(data)
 end
 
 registerHook("REGION_ENTER", "ctf_event_prize", "spawn2-event_ctfportal");
---
+
 

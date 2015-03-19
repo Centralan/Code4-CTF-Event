@@ -402,7 +402,7 @@ end
 
 function get_green_flag(data)
 	local player = Player:new(data.player);
-        print(playerName); print(v); end
+        for playerName, v in pairs(blueTeamPlayers) do print(playerName); print(v); end
         if isPlayerOnBlueTeam(player.name) then
                 greenfChest:cloneChestToPlayer(player.name);
 		player:sendMessage("&bYou have the Green Flag! Return it to the Blue base!");

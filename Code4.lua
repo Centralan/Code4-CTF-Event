@@ -457,6 +457,7 @@ function blue_flag_score(data, key, location)
 	end
 end
 
+registerHook("INTERACT", "green_flag_score", 77, "Code4", 46, 75, 1);
 registerHook("INTERACT", "blue_flag_score", 77, "Code4", -46, 75, -1);
 
 -- Achievements

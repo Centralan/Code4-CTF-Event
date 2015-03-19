@@ -382,30 +382,21 @@ registerHook("BLOCK_GAINS_CURRENT", "fireTick", "code4", -1, 82, -36);
 --
 
 local world = World:new('Code4');
-local Overlord = 'Horae';
+local bluefChest = Location:new(world, -4, 87, -40);
+local bluePlayers = {};
 
-function a_broadcast(msg)
-	world:broadcast(msg);
+function get_blue_flag(data)
+	local player = Player:new(data.player);
+	if bluePlayers[player.name] == nil then
+		bluePlayers[player.name] = true;
+		bluefChest:cloneChestToPlayer(player.name);
+                player:closeInventory();
+		player:sendMessage("&bYou have the Blue Flag! Return it to the Green base!");
+	end
 end
 
-function a_broadcast_npc(npc, msg)
-	a_broadcast('&f[C4] &b' .. npc .. '&f: ' .. msg);
-end
+registerHook("INTERACT", "get_blue_flag", 54, "Code4", 47, 75, -1);
 
-function blue_perror(player)
-	player:sendMessage("&cSomething went wrong!");
-end
-
-function blue_flag_pickup(data)
-        if data.itemName == "§cBlue Flag" then
-                 a_broadcast_npc(Overlord, data.player .. " has the blue flag!");
-        else
-                 blue_perror(player);
-
-        end
-end
-
-registerHook("PLAYER_ITEM_PICKUP", "blue_flag_pickup", "Code4");
 
 -- Flag Drops
 --
@@ -413,12 +404,7 @@ registerHook("PLAYER_ITEM_PICKUP", "blue_flag_pickup", "Code4");
 -- Flag Carrier Deaths
 --
 
-
--- Flag Detection
---
-
 -- Achievements
---
 
 function ctf_event_prize(data)
         local p = Player:new(data["player"]);
@@ -426,4 +412,5 @@ function ctf_event_prize(data)
 end
 
 registerHook("REGION_ENTER", "ctf_event_prize", "spawn2-event_ctfportal");
+--
 

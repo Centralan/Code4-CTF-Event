@@ -424,6 +424,32 @@ registerHook("INTERACT", "get_green_flag", 77, "Code4", -46, 75, 1);
 -- Flag Score
 --
 
+local world = World:new('Code4');
+local Overlord = 'Horae'
+
+function a_broadcast(msg)
+	world:broadcast(msg);
+end
+
+function a_broadcast_npc(npc, msg)
+	a_broadcast('&f[C4] &b' .. npc .. '&f: ' .. msg);
+end
+
+function flag_score_error(player)
+	player:sendMessage("&4You need the correct flag to score!");
+end
+
+function green_flag_score(data, key, location)
+	local player = Player:new(data.player);
+	if player:hasItemWithName("&cGreen Flag") then
+		a_broadcast_npc(Overlord, data.player .. "has captured the Green Flag!", player);
+	else
+		flag_score_error(player);
+	end
+end
+
+registerHook("INTERACT", "green_flag_score", 77, "Code4", 46, 75, 1);
+
 -- Achievements
 --
 

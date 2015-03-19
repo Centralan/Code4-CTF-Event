@@ -381,12 +381,13 @@ registerHook("BLOCK_GAINS_CURRENT", "fireTick", "code4", -1, 82, -36);
 -- Flag Pickups
 --
 
-function blue_perror(player)
+function flag_perror(player)
 	player:sendMessage("&4Sorry you can't take your own flag from your base.");
 end
 
 local world = World:new('Code4');
 local bluefChest = Location:new(world, -4, 87, -40);
+local greenfChest = Location:new(world, -4, 86, -41);
 
 function get_blue_flag(data)
 	local player = Player:new(data.player);
@@ -394,12 +395,24 @@ function get_blue_flag(data)
                 bluefChest:cloneChestToPlayer(player.name);
 		player:sendMessage("&bYou have the Blue Flag! Return it to the Green base!");
         else
-               blue_perror(player)
+               flag_perror(player)
+        end
+
+end
+
+function get_green_flag(data)
+	local player = Player:new(data.player);
+        if isPlayerOnBlueTeam(player.name) then
+                greenfChest:cloneChestToPlayer(player.name);
+		player:sendMessage("&bYou have the Green Flag! Return it to the Blue base!");
+        else
+               flag_perror(player)
         end
 
 end
 
 registerHook("INTERACT", "get_blue_flag", 77, "Code4", 46, 75, -1);
+registerHook("INTERACT", "get_green_flag", 77, "Code4", -46, 75, 1);
 
 -- Flag Drops
 --

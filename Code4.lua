@@ -48,22 +48,22 @@ function chatMonitor(data)
 		local message = data.message;
 		
 		if hasPrefix(message, "#AddBluePlayer") then
-			local playerName = splitPlayerName(message, 15);
+			local playerName = splitPlayerName(message, 16);
 			
 			addPlayerToBlueTeam(playerName);
 			player:sendMessage("Adding " .. playerName .. " to the &9Blue team!");
 		elseif hasPrefix(message, "#AddGreenPlayer") then
-			local playerName = splitPlayerName(message, 16);
+			local playerName = splitPlayerName(message, 17);
 			
 			addPlayerToGreenTeam(playerName);
 			player:sendMessage("Adding " .. playerName .. " to the &aGreen team!");
 		elseif hasPrefix(message, "#RemoveBluePlayer") then
-			local playerName = splitPlayerName(message, 18);
+			local playerName = splitPlayerName(message, 19);
 			
 			removePlayerFromBlueTeam(playerName);
 			player:sendMessage("Removing " .. playerName .. " from the &9Blue team!");
 		elseif hasPrefix(message, "#RemoveGreenPlayer") then
-			local playerName = splitPlayerName(message, 19);
+			local playerName = splitPlayerName(message, 20);
 			
 			removePlayerFromGreenTeam(playerName);
 			player:sendMessage("Removing " .. playerName .. " from the &aGreen team!");
@@ -402,7 +402,6 @@ end
 
 function get_green_flag(data)
 	local player = Player:new(data.player);
-        for playerName, v in pairs(blueTeamPlayers) do print(playerName); print(v); end
         if isPlayerOnBlueTeam(player.name) then
                 greenfChest:cloneChestToPlayer(player.name);
 		player:sendMessage("&bYou have the Green Flag! Return it to the Blue base!");

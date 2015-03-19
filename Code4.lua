@@ -390,9 +390,8 @@ local bluefChest = Location:new(world, -4, 87, -40);
 
 function get_blue_flag(data)
 	local player = Player:new(data.player);
-        if isPlayerOnGreenTeam(data.player) then
+        if isPlayerOnGreenTeam(player.name) then
                 bluefChest:cloneChestToPlayer(player.name);
-                player:closeInventory();
 		player:sendMessage("&bYou have the Blue Flag! Return it to the Green base!");
         else
                blue_perror(player)
@@ -400,7 +399,7 @@ function get_blue_flag(data)
 
 end
 
-registerHook("INTERACT", "get_blue_flag", 54, "Code4", 47, 75, -1);
+registerHook("INTERACT", "get_blue_flag", 77, "Code4", 46, 75, -1);
 
 -- Flag Drops
 --

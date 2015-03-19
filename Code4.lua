@@ -398,7 +398,7 @@ end
 
 function blue_flag_pickup(data)
         local player = Player:new(data.player);
-        if player:hasItemWithName("&cBlue Flag") then
+        if data.itemName = "§cBlue Flag" then
                  a_broadcast_npc(Overlord, data.player .. " has the blue flag!");
         else
                  blue_perror(player);

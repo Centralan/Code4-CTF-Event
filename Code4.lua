@@ -448,7 +448,16 @@ function green_flag_score(data, key, location)
 	end
 end
 
-registerHook("INTERACT", "green_flag_score", 77, "Code4", 46, 75, 1);
+function blue_flag_score(data, key, location)
+	local player = Player:new(data.player);
+	if player:hasItemWithName("&cBlue Flag") then
+		a_broadcast_npc(Overlord, data.player .. "has captured the Blue Flag!", player);
+	else
+		flag_score_error(player);
+	end
+end
+
+registerHook("INTERACT", "blue_flag_score", 77, "Code4", -46, 75, -1);
 
 -- Achievements
 --

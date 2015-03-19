@@ -381,6 +381,25 @@ registerHook("BLOCK_GAINS_CURRENT", "fireTick", "code4", -1, 82, -36);
 -- Flag Pickups
 --
 
+local world = World:new('Code4');
+local Overlord = 'Horae'
+
+function a_broadcast(msg)
+	world:broadcast(msg);
+end
+
+function a_broadcast_npc(npc, msg)
+	a_broadcast('&f[C4] &b' .. npc .. '&f: ' .. msg);
+end
+
+function blue-flag-pickup(data)
+        local player = Player:new(data.player);
+        if player:hasItemWithName("&cBlue Flag") then
+                 a_broadcast_npc(Overlord, "#player has the blue flag!", player);
+        end
+
+registerHook("PLAYER_ITEM_PICKUP", "blue-flag-pickup", "Code4");
+
 -- Flag Drops
 --
 

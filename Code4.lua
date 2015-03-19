@@ -12,7 +12,7 @@ function removePlayerFromBlueTeam(playerName)
 end
 
 function isPlayerOnBlueTeam(playerName)
-	return 	blueTeamPlayers[playerName] ~= nil;
+	return blueTeamPlayers[playerName] == true;
 end
 
 local greenTeamPlayers = {};
@@ -27,7 +27,7 @@ function removePlayerFromGreenTeam(playerName)
 end
 
 function isPlayerOnGreenTeam(playerName)
-	return greenTeamPlayers[playerName] ~= nil;	
+	return greenTeamPlayers[playerName] == true;	
 end
 
 -- Team Chat Detection
@@ -419,6 +419,9 @@ registerHook("INTERACT", "get_green_flag", 77, "Code4", -46, 75, 1);
 --
 
 -- Flag Carrier Deaths
+--
+
+-- Flag Score
 --
 
 -- Achievements

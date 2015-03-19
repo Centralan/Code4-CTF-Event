@@ -43,7 +43,7 @@ end
 
 function chatMonitor(data)
 	-- Make sure it's you giving the command.
-	if data.player == "Centralan" then
+	if player.name == "Centralan" or player.name == "iliketoeatpenuts" then
 		local player = Player:new(data.player);
 		local message = data.message;
 		

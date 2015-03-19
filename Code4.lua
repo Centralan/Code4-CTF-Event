@@ -387,13 +387,11 @@ end
 
 local world = World:new('Code4');
 local bluefChest = Location:new(world, -4, 87, -40);
-local bluePlayers = {};
 
 function get_blue_flag(data)
 	local player = Player:new(data.player);
         if isPlayerOnGreenTeam(data.player) then
-		isPlayerOnGreenTeam[data.player] = true;
-		bluefChest:cloneChestToPlayer(player.name);
+                bluefChest:cloneChestToPlayer(player.name);
                 player:closeInventory();
 		player:sendMessage("&bYou have the Blue Flag! Return it to the Green base!");
         else

@@ -397,6 +397,7 @@ function blue_flag_pickup(data)
         if player:hasItemWithName("&cBlue Flag") then
                  a_broadcast_npc(Overlord, data.player .. " has the blue flag!");
         end
+end
 
 registerHook("PLAYER_ITEM_PICKUP", "blue_flag_pickup", "Code4");
 

@@ -1,3 +1,5 @@
+require 'sha256'
+
 -- Create a new array.
 local blueTeamPlayers = {};
 

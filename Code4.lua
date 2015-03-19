@@ -404,6 +404,26 @@ registerHook("PLAYER_ITEM_PICKUP", "blue_flag_pickup", "Code4");
 -- Flag Drops
 --
 
+local world = World:new('Code4');
+local Overlord = 'Horae';
+
+function a_broadcast(msg)
+	world:broadcast(msg);
+end
+
+function a_broadcast_npc(npc, msg)
+	a_broadcast('&f[C4] &b' .. npc .. '&f: ' .. msg);
+end
+
+function blue_flag_drop(data)
+        local player = Player:new(data.player);
+        if player:hasItemWithName("&cBlue Flag") then
+                 a_broadcast_npc(Overlord, data.player .. " has dropped the blue flag!");
+        end
+end
+
+registerHook("PLAYER_ITEM_DROP", "blue_flag_drop", "Code4");
+
 -- Flag Carrier Deaths
 --
 

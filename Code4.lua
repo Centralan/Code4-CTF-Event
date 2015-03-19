@@ -398,7 +398,7 @@ function blue_flag_pickup(data)
                  a_broadcast_npc(Overlord, "#player has the blue flag!", player);
         end
 
-registerHook("PLAYER_ITEM_PICKUP", "blue-flag-pickup", "Code4");
+registerHook("PLAYER_ITEM_PICKUP", "blue_flag_pickup", "Code4");
 
 -- Flag Drops
 --

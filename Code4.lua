@@ -199,15 +199,15 @@ end
 
 registerHook("REGION_ENTER", "green_lobby_teleport", "Code4-glta");
 
-local myWorld = World:new('Code4');
-local location = Location:new(myWorld, 0, 90, -51);
+--local myWorld = World:new('Code4');
+--local location = Location:new(myWorld, 0, 90, -51);
 
-function lobby_catch(data)
-       local targetPlayer = Player:new(data.player);
-       targetPlayer:teleport(location);
-end
+--function lobby_catch(data)
+--       local targetPlayer = Player:new(data.player);
+--       targetPlayer:teleport(location);
+--end
 
-registerHook("REGION_ENTER", "lobby_catch", "Code4-lobby_catch");
+--registerHook("REGION_ENTER", "lobby_catch", "Code4-lobby_catch");
 
 local myWorld = World:new('Code4');
 local location = Location:new(myWorld, 0, 90, -51);
@@ -411,9 +411,29 @@ end
 registerHook("PLAYER_ITEM_DROP", "green_down", "Code4");
 registerHook("PLAYER_ITEM_DROP", "blue_down", "Code4");
 
+
 -- Flag Returns
--- This is a place holder for text when the flag gets returned.
---
+-- 
+
+function return_green_flag(data, key, location)
+        local player = Player:new(data.player);
+        if isPlayerOnGreenTeam(player.name) then
+        player:removeItemByName('Green Flag');
+        a_broadcast_npc(Overlord, data.player .. " has returned the &aGreen Flag&f!", player);
+    end
+end
+
+function return_blue_flag(data, key, location)
+        local player = Player:new(data.player);
+        if isPlayerOnBlueTeam(player.name) then
+        player:removeItemByName('Blue Flag');
+        a_broadcast_npc(Overlord, data.player .. " has returned the &9Blue Flag&f!", player);
+    end
+end
+
+registerHook("PLAYER_ITEM_PICKUP", "return_green_flag", "Code4")
+registerHook("PLAYER_ITEM_PICKUP", "return_blue_flag", "Code4")
+
 
 
 -- Flag Score
@@ -457,5 +477,3 @@ function ctf_event_prize(data)
 end
 
 registerHook("REGION_ENTER", "ctf_event_prize", "spawn2-event_ctfportal");
-
-

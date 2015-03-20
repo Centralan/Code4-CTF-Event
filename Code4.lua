@@ -383,7 +383,9 @@ end
 function green_flag_score(data, key, location)
 	local player = Player:new(data.player);
 	if player:hasItemWithName('Green Flag') then
-		a_broadcast_npc(Overlord, data.player .. " has captured the Green Flag!", player);
+		a_broadcast_npc(Overlord, data.player .. " &6has captured the Green Flag!", player);
+                a_broadcast_npc(Overlord, "&bThe &9Blue Team &bhas Scored a Point!", player);
+                soundblock:playSound('LAVA_POP', 1000, 50);
 	else
 		flag_score_error(player);
 	end
@@ -392,7 +394,9 @@ end
 function blue_flag_score(data, key, location)
 	local player = Player:new(data.player);
 	if player:hasItemWithName('Blue Flag') then
-		a_broadcast_npc(Overlord, data.player .. " has captured the Blue Flag!", player);
+		a_broadcast_npc(Overlord, data.player .. " &6has captured the &bBlue Flag&6!", player);
+                a_broadcast_npc(Overlord, "&aThe &2Green Team &ahas Scored a Point!", player);
+                soundblock:playSound('LAVA_POP', 1000, 50);
 	else
 		flag_score_error(player);
 	end

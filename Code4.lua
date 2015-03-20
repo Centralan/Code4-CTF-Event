@@ -803,3 +803,262 @@ registerHook("INTERACT", "green_blank", 77, "Code4", -2, 88, -36);
 registerHook("INTERACT", "green_0", 77, "Code4", -1, 88, -36);
 registerHook("INTERACT", "green_1", 77, "Code4", 0, 88, -36);
 registerHook("INTERACT", "green_2", 77, "Code4", 1, 88, -36);
+
+-- Blue Scoreboard
+--
+
+local current = 1;
+local maxData = 14;
+local blocks = {
+	Location:new(world, 1.0, 92.0, 30.0),
+	Location:new(world, 2.0, 92.0, 30.0),
+	Location:new(world, 3.0, 92.0, 30.0),
+	Location:new(world, 4.0, 92.0, 30.0),
+	Location:new(world, 5.0, 92.0, 30.0),
+	Location:new(world, 6.0, 92.0, 30.0),
+	Location:new(world, 7.0, 92.0, 30.0),
+	Location:new(world, 8.0, 92.0, 30.0),
+	Location:new(world, 9.0, 92.0, 30.0),
+	Location:new(world, 10.0, 92.0, 30.0),
+	Location:new(world, 1.0, 91.0, 30.0),
+	Location:new(world, 2.0, 91.0, 30.0),
+	Location:new(world, 3.0, 91.0, 30.0),
+	Location:new(world, 4.0, 91.0, 30.0),
+	Location:new(world, 5.0, 91.0, 30.0),
+	Location:new(world, 6.0, 91.0, 30.0),
+	Location:new(world, 7.0, 91.0, 30.0),
+	Location:new(world, 8.0, 91.0, 30.0),
+	Location:new(world, 9.0, 91.0, 30.0),
+	Location:new(world, 10.0, 91.0, 30.0),
+	Location:new(world, 1.0, 90.0, 30.0),
+	Location:new(world, 2.0, 90.0, 30.0),
+	Location:new(world, 3.0, 90.0, 30.0),
+	Location:new(world, 4.0, 90.0, 30.0),
+	Location:new(world, 5.0, 90.0, 30.0),
+	Location:new(world, 6.0, 90.0, 30.0),
+	Location:new(world, 7.0, 90.0, 30.0),
+	Location:new(world, 8.0, 90.0, 30.0),
+	Location:new(world, 9.0, 90.0, 30.0),
+	Location:new(world, 10.0, 90.0, 30.0),
+	Location:new(world, 1.0, 89.0, 30.0),
+	Location:new(world, 2.0, 89.0, 30.0),
+	Location:new(world, 3.0, 89.0, 30.0),
+	Location:new(world, 4.0, 89.0, 30.0),
+	Location:new(world, 5.0, 89.0, 30.0),
+	Location:new(world, 6.0, 89.0, 30.0),
+	Location:new(world, 7.0, 89.0, 30.0),
+	Location:new(world, 8.0, 89.0, 30.0),
+	Location:new(world, 9.0, 89.0, 30.0),
+	Location:new(world, 10.0, 89.0, 30.0),
+	Location:new(world, 1.0, 88.0, 30.0),
+	Location:new(world, 2.0, 88.0, 30.0),
+	Location:new(world, 3.0, 88.0, 30.0),
+	Location:new(world, 4.0, 88.0, 30.0),
+	Location:new(world, 5.0, 88.0, 30.0),
+	Location:new(world, 6.0, 88.0, 30.0),
+	Location:new(world, 7.0, 88.0, 30.0),
+	Location:new(world, 8.0, 88.0, 30.0),
+	Location:new(world, 9.0, 88.0, 30.0),
+	Location:new(world, 10.0, 88.0, 30.0),
+	Location:new(world, 1.0, 87.0, 30.0),
+	Location:new(world, 2.0, 87.0, 30.0),
+	Location:new(world, 3.0, 87.0, 30.0),
+	Location:new(world, 4.0, 87.0, 30.0),
+	Location:new(world, 5.0, 87.0, 30.0),
+	Location:new(world, 6.0, 87.0, 30.0),
+	Location:new(world, 7.0, 87.0, 30.0),
+	Location:new(world, 8.0, 87.0, 30.0),
+	Location:new(world, 9.0, 87.0, 30.0),
+	Location:new(world, 10.0, 87.0, 30.0),
+	Location:new(world, 1.0, 86.0, 30.0),
+	Location:new(world, 2.0, 86.0, 30.0),
+	Location:new(world, 3.0, 86.0, 30.0),
+	Location:new(world, 4.0, 86.0, 30.0),
+	Location:new(world, 5.0, 86.0, 30.0),
+	Location:new(world, 6.0, 86.0, 30.0),
+	Location:new(world, 7.0, 86.0, 30.0),
+	Location:new(world, 8.0, 86.0, 30.0),
+	Location:new(world, 9.0, 86.0, 30.0),
+	Location:new(world, 10.0, 86.0, 30.0),
+	Location:new(world, 1.0, 85.0, 30.0),
+	Location:new(world, 2.0, 85.0, 30.0),
+	Location:new(world, 3.0, 85.0, 30.0),
+	Location:new(world, 4.0, 85.0, 30.0),
+	Location:new(world, 5.0, 85.0, 30.0),
+	Location:new(world, 6.0, 85.0, 30.0),
+	Location:new(world, 7.0, 85.0, 30.0),
+	Location:new(world, 8.0, 85.0, 30.0),
+	Location:new(world, 9.0, 85.0, 30.0),
+	Location:new(world, 10.0, 85.0, 30.0),
+	Location:new(world, 1.0, 84.0, 30.0),
+	Location:new(world, 2.0, 84.0, 30.0),
+	Location:new(world, 3.0, 84.0, 30.0),
+	Location:new(world, 4.0, 84.0, 30.0),
+	Location:new(world, 5.0, 84.0, 30.0),
+	Location:new(world, 6.0, 84.0, 30.0),
+	Location:new(world, 7.0, 84.0, 30.0),
+	Location:new(world, 8.0, 84.0, 30.0),
+	Location:new(world, 9.0, 84.0, 30.0),
+	Location:new(world, 10.0, 84.0, 30.0),
+	Location:new(world, 1.0, 83.0, 30.0),
+	Location:new(world, 2.0, 83.0, 30.0),
+	Location:new(world, 3.0, 83.0, 30.0),
+	Location:new(world, 4.0, 83.0, 30.0),
+	Location:new(world, 5.0, 83.0, 30.0),
+	Location:new(world, 6.0, 83.0, 30.0),
+	Location:new(world, 7.0, 83.0, 30.0),
+	Location:new(world, 8.0, 83.0, 30.0),
+	Location:new(world, 9.0, 83.0, 30.0),
+	Location:new(world, 10.0, 83.0, 30.0),
+};
+
+function blue_blank(data)
+	if current == maxData then
+		current = 1;
+	else
+		current = current + 1;
+	end
+	blue_score_blank();
+end
+
+function blue_score_blank()
+	for index, key in ipairs(blocks) do
+		key:setBlock(173, current);
+	end
+end
+
+local current = 1;
+local maxData = 14;
+local blocks = {
+	Location:new(world, 3.0, 91.0, 30.0),
+	Location:new(world, 4.0, 91.0, 30.0),
+	Location:new(world, 5.0, 91.0, 30.0),
+	Location:new(world, 6.0, 91.0, 30.0),
+	Location:new(world, 7.0, 91.0, 30.0),
+	Location:new(world, 8.0, 91.0, 30.0),
+	Location:new(world, 8.0, 90.0, 30.0),
+	Location:new(world, 8.0, 89.0, 30.0),
+	Location:new(world, 8.0, 88.0, 30.0),
+	Location:new(world, 8.0, 87.0, 30.0),
+	Location:new(world, 8.0, 86.0, 30.0),
+	Location:new(world, 8.0, 85.0, 30.0),
+	Location:new(world, 8.0, 84.0, 30.0),
+	Location:new(world, 7.0, 84.0, 30.0),
+	Location:new(world, 6.0, 84.0, 30.0),
+	Location:new(world, 5.0, 84.0, 30.0),
+	Location:new(world, 4.0, 84.0, 30.0),
+	Location:new(world, 3.0, 84.0, 30.0),
+	Location:new(world, 3.0, 85.0, 30.0),
+	Location:new(world, 3.0, 86.0, 30.0),
+	Location:new(world, 3.0, 87.0, 30.0),
+	Location:new(world, 3.0, 88.0, 30.0),
+	Location:new(world, 3.0, 89.0, 30.0),
+	Location:new(world, 3.0, 90.0, 30.0),
+
+};
+
+function blue_0(data)
+	if current == maxData then
+		current = 1;
+	else
+		current = current + 1;
+	end
+	blue_score_0();
+end
+
+function blue_score_0()
+	for index, key in ipairs(blocks) do
+		key:setBlock(89, current);
+	end
+end
+
+local current = 1;
+local maxData = 14;
+local blocks = {
+	Location:new(world, 3.0, 84.0, 30.0),
+	Location:new(world, 4.0, 84.0, 30.0),
+	Location:new(world, 5.0, 84.0, 30.0),
+	Location:new(world, 6.0, 84.0, 30.0),
+	Location:new(world, 7.0, 84.0, 30.0),
+	Location:new(world, 8.0, 84.0, 30.0),
+	Location:new(world, 5.0, 85.0, 30.0),
+	Location:new(world, 6.0, 85.0, 30.0),
+	Location:new(world, 5.0, 86.0, 30.0),
+	Location:new(world, 6.0, 86.0, 30.0),
+	Location:new(world, 5.0, 87.0, 30.0),
+	Location:new(world, 6.0, 87.0, 30.0),
+	Location:new(world, 5.0, 88.0, 30.0),
+	Location:new(world, 6.0, 88.0, 30.0),
+	Location:new(world, 5.0, 89.0, 30.0),
+	Location:new(world, 6.0, 89.0, 30.0),
+	Location:new(world, 5.0, 90.0, 30.0),
+	Location:new(world, 6.0, 90.0, 30.0),
+	Location:new(world, 5.0, 91.0, 30.0),
+	Location:new(world, 6.0, 91.0, 30.0),
+	Location:new(world, 7.0, 90.0, 30.0),
+	Location:new(world, 8.0, 89.0, 30.0),
+};
+
+function blue_1(data)
+	if current == maxData then
+		current = 1;
+	else
+		current = current + 1;
+	end
+	blue_score_1();
+end
+
+function blue_score_1()
+	for index, key in ipairs(blocks) do
+		key:setBlock(89, current);
+	end
+end
+
+local current = 1;
+local maxData = 14;
+local blocks = {
+	Location:new(world, 3.0, 91.0, 30.0),
+	Location:new(world, 4.0, 91.0, 30.0),
+	Location:new(world, 5.0, 91.0, 30.0),
+	Location:new(world, 6.0, 91.0, 30.0),
+	Location:new(world, 7.0, 91.0, 30.0),
+	Location:new(world, 8.0, 91.0, 30.0),
+	Location:new(world, 8.0, 90.0, 30.0),
+	Location:new(world, 8.0, 89.0, 30.0),
+	Location:new(world, 8.0, 88.0, 30.0),
+	Location:new(world, 7.0, 88.0, 30.0),
+	Location:new(world, 6.0, 88.0, 30.0),
+	Location:new(world, 5.0, 88.0, 30.0),
+	Location:new(world, 4.0, 88.0, 30.0),
+	Location:new(world, 3.0, 88.0, 30.0),
+	Location:new(world, 3.0, 87.0, 30.0),
+	Location:new(world, 3.0, 86.0, 30.0),
+	Location:new(world, 3.0, 85.0, 30.0),
+	Location:new(world, 3.0, 84.0, 30.0),
+	Location:new(world, 4.0, 84.0, 30.0),
+	Location:new(world, 5.0, 84.0, 30.0),
+	Location:new(world, 6.0, 84.0, 30.0),
+	Location:new(world, 7.0, 84.0, 30.0),
+	Location:new(world, 8.0, 84.0, 30.0),
+
+};
+
+function blue_5(data)
+	if current == maxData then
+		current = 1;
+	else
+		current = current + 1;
+	end
+	blue_score_5();
+end
+
+function blue_score_5()
+	for index, key in ipairs(blocks) do
+		key:setBlock(89, current);
+	end
+end
+
+registerHook("INTERACT", "blue_blank", 77, "Code4", -2, 86, -36);
+registerHook("INTERACT", "blue_0", 77, "Code4", -1, 86, -36);
+registerHook("INTERACT", "blue_1", 77, "Code4", 0, 86, -36);
+registerHook("INTERACT", "blue_5", 77, "Code4", 4, 86, -36);

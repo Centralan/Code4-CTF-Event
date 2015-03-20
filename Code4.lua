@@ -525,3 +525,54 @@ function ctf_event_prize(data)
 end
 
 registerHook("REGION_ENTER", "ctf_event_prize", "spawn2-event_ctfportal");
+
+-- Green Scoreboard
+--
+
+local world = "Code4";
+local current = 1;
+local maxData = 14;
+local blocks = {
+	Location:new(world, -3.0, 91.0, 30.0),
+	Location:new(world, -4.0, 91.0, 30.0),
+	Location:new(world, -5.0, 91.0, 30.0),
+	Location:new(world, -6.0, 91.0, 30.0),
+	Location:new(world, -7.0, 91.0, 30.0),
+	Location:new(world, -8.0, 91.0, 30.0),
+	Location:new(world, -8.0, 90.0, 30.0),
+	Location:new(world, -8.0, 89.0, 30.0),
+	Location:new(world, -8.0, 88.0, 30.0),
+	Location:new(world, -8.0, 87.0, 30.0),
+	Location:new(world, -8.0, 86.0, 30.0),
+	Location:new(world, -8.0, 85.0, 30.0),
+	Location:new(world, -8.0, 84.0, 30.0),
+	Location:new(world, -7.0, 84.0, 30.0),
+	Location:new(world, -6.0, 84.0, 30.0),
+	Location:new(world, -5.0, 84.0, 30.0),
+	Location:new(world, -4.0, 84.0, 30.0),
+	Location:new(world, -3.0, 84.0, 30.0),
+	Location:new(world, -3.0, 85.0, 30.0),
+	Location:new(world, -3.0, 86.0, 30.0),
+	Location:new(world, -3.0, 87.0, 30.0),
+	Location:new(world, -3.0, 88.0, 30.0),
+	Location:new(world, -3.0, 89.0, 30.0),
+	Location:new(world, -3.0, 90.0, 30.0),
+
+};
+
+function blue_0(data)
+	if current == maxData then
+		current = 1;
+	else
+		current = current + 1;
+	end
+	blue_score_0();
+end
+
+function blue_score_0()
+	for index, key in ipairs(blocks) do
+		key:setBlock(89, current);
+	end
+end
+
+registerHook("INTERACT", "blue_0", 77, "Code4", -1, 88, -36);

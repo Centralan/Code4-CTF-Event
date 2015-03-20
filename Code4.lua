@@ -209,8 +209,7 @@ registerHook("REGION_ENTER", "green_lobby_teleport", "Code4-glta");
 
 --registerHook("REGION_ENTER", "lobby_catch", "Code4-lobby_catch");
 
-local myWorld = World:new('Code4');
-local location = Location:new(myWorld, 0, 90, -51);
+local location = Location:new(world, 0, 90, -51);
 
 function ctf_catch(data)
        local targetPlayer = Player:new(data.player);
@@ -219,8 +218,7 @@ end
 
 registerHook("REGION_ENTER", "ctf_catch", "Code4-ctf_catch");
 
-local myWorld = World:new('Code4');
-local location = Location:new(myWorld, -44, 64, 0);
+local location = Location:new(world, -44, 64, 0);
 
 function gsafe_arena1(data)
        local targetPlayer = Player:new(data.player);
@@ -229,8 +227,7 @@ end
 
 registerHook("REGION_ENTER", "gsafe_arena1", "Code4-gsta1");
 
-local myWorld = World:new('Code4');
-local location = Location:new(myWorld, -44, 64, 0);
+local location = Location:new(world, -44, 64, 0);
 
 function gsafe_arena2(data)
        local targetPlayer = Player:new(data.player);
@@ -239,8 +236,7 @@ end
 
 registerHook("REGION_ENTER", "gsafe_arena2", "Code4-gsta2");
 
-local myWorld = World:new('Code4');
-local location = Location:new(myWorld, 44, 64, 0);
+local location = Location:new(world, 44, 64, 0);
 
 function bsafe_arena1(data)
        local targetPlayer = Player:new(data.player);
@@ -249,8 +245,7 @@ end
 
 registerHook("REGION_ENTER", "bsafe_arena1", "Code4-bsta1");
 
-local myWorld = World:new('Code4');
-local location = Location:new(myWorld, 44, 64, 0);
+local location = Location:new(world, 44, 64, 0);
 
 function bsafe_arena2(data)
        local targetPlayer = Player:new(data.player);
@@ -262,7 +257,6 @@ registerHook("REGION_ENTER", "bsafe_arena2", "Code4-bsta2");
 -- Team Gear Up
 --
 
-local world = World:new('Code4');
 local BlueGearChest = Location:new(world, 1, 86, -43);
 local BlueTeamGearUp = Location:new(world, 40, 66, 0);
 local BluePlayers = {};
@@ -298,8 +292,6 @@ registerHook("REGION_ENTER", "Green_Team_Gear", "Code4-glta");
 
 -- Effects for Flags
 --
-
-local world = World:new('Code4');
 
 local effects = {
         {"Green Flag", "CLOUD", 0.05, 20, 5},
@@ -338,7 +330,6 @@ function flag_perror(player)
 	player:sendMessage("&4Sorry you can't take your own flag from your base.");
 end
 
-local world = World:new('Code4');
 local bluefChest = Location:new(world, 2, 85, -43);
 local greenfChest = Location:new(world, 3, 86, -43);
 
@@ -528,8 +519,6 @@ registerHook("REGION_ENTER", "ctf_event_prize", "spawn2-event_ctfportal");
 
 -- Green Scoreboard
 --
-
-local world = "Code4";
 local current = 1;
 local maxData = 14;
 local blocks = {

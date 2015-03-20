@@ -799,10 +799,57 @@ function green_score_2()
 	end
 end
 
+local current = 1;
+local maxData = 14;
+local blocks = {
+	Location:new(world, -3.0, 91.0, 30.0),
+	Location:new(world, -4.0, 91.0, 30.0),
+	Location:new(world, -5.0, 91.0, 30.0),
+	Location:new(world, -6.0, 91.0, 30.0),
+	Location:new(world, -7.0, 91.0, 30.0),
+	Location:new(world, -8.0, 91.0, 30.0),
+	Location:new(world, -8.0, 90.0, 30.0),
+	Location:new(world, -8.0, 89.0, 30.0),
+	Location:new(world, -8.0, 88.0, 30.0),
+	Location:new(world, -8.0, 87.0, 30.0),
+	Location:new(world, -8.0, 86.0, 30.0),
+	Location:new(world, -8.0, 85.0, 30.0),
+	Location:new(world, -8.0, 84.0, 30.0),
+	Location:new(world, -4.0, 88.0, 30.0),
+	Location:new(world, -5.0, 88.0, 30.0),
+	Location:new(world, -6.0, 88.0, 30.0),
+	Location:new(world, -7.0, 88.0, 30.0),
+	Location:new(world, -4.0, 87.0, 30.0),
+	Location:new(world, -5.0, 87.0, 30.0),
+	Location:new(world, -6.0, 87.0, 30.0),
+	Location:new(world, -7.0, 87.0, 30.0),
+	Location:new(world, -3.0, 84.0, 30.0),
+	Location:new(world, -4.0, 84.0, 30.0),
+	Location:new(world, -5.0, 84.0, 30.0),
+	Location:new(world, -6.0, 84.0, 30.0),
+	Location:new(world, -7.0, 84.0, 30.0),
+};
+
+function green_3(data)
+	if current == maxData then
+		current = 1;
+	else
+		current = current + 1;
+	end
+	green_score_3();
+end
+
+function green_score_3()
+	for index, key in ipairs(blocks) do
+		key:setBlock(89, current);
+	end
+end
+
 registerHook("INTERACT", "green_blank", 77, "Code4", -2, 88, -36);
 registerHook("INTERACT", "green_0", 77, "Code4", -1, 88, -36);
 registerHook("INTERACT", "green_1", 77, "Code4", 0, 88, -36);
 registerHook("INTERACT", "green_2", 77, "Code4", 1, 88, -36);
+registerHook("INTERACT", "green_3", 77, "Code4", 2, 88, -36);
 
 -- Blue Scoreboard
 --
@@ -1023,6 +1070,52 @@ local blocks = {
 	Location:new(world, 6.0, 91.0, 30.0),
 	Location:new(world, 7.0, 91.0, 30.0),
 	Location:new(world, 8.0, 91.0, 30.0),
+	Location:new(world, 3.0, 90.0, 30.0),
+	Location:new(world, 3.0, 89.0, 30.0),
+	Location:new(world, 3.0, 88.0, 30.0),
+	Location:new(world, 3.0, 87.0, 30.0),
+	Location:new(world, 3.0, 86.0, 30.0),
+	Location:new(world, 3.0, 85.0, 30.0),
+	Location:new(world, 8.0, 84.0, 30.0),
+	Location:new(world, 4.0, 88.0, 30.0),
+	Location:new(world, 5.0, 88.0, 30.0),
+	Location:new(world, 6.0, 88.0, 30.0),
+	Location:new(world, 7.0, 88.0, 30.0),
+	Location:new(world, 4.0, 87.0, 30.0),
+	Location:new(world, 5.0, 87.0, 30.0),
+	Location:new(world, 6.0, 87.0, 30.0),
+	Location:new(world, 7.0, 87.0, 30.0),
+	Location:new(world, 3.0, 84.0, 30.0),
+	Location:new(world, 4.0, 84.0, 30.0),
+	Location:new(world, 5.0, 84.0, 30.0),
+	Location:new(world, 6.0, 84.0, 30.0),
+	Location:new(world, 7.0, 84.0, 30.0),
+};
+
+function blue_3(data)
+	if current == maxData then
+		current = 1;
+	else
+		current = current + 1;
+	end
+	blue_score_3();
+end
+
+function blue_score_3()
+	for index, key in ipairs(blocks) do
+		key:setBlock(89, current);
+	end
+end
+
+local current = 1;
+local maxData = 14;
+local blocks = {
+	Location:new(world, 3.0, 91.0, 30.0),
+	Location:new(world, 4.0, 91.0, 30.0),
+	Location:new(world, 5.0, 91.0, 30.0),
+	Location:new(world, 6.0, 91.0, 30.0),
+	Location:new(world, 7.0, 91.0, 30.0),
+	Location:new(world, 8.0, 91.0, 30.0),
 	Location:new(world, 8.0, 90.0, 30.0),
 	Location:new(world, 8.0, 89.0, 30.0),
 	Location:new(world, 8.0, 88.0, 30.0),
@@ -1061,4 +1154,5 @@ end
 registerHook("INTERACT", "blue_blank", 77, "Code4", -2, 86, -36);
 registerHook("INTERACT", "blue_0", 77, "Code4", -1, 86, -36);
 registerHook("INTERACT", "blue_1", 77, "Code4", 0, 86, -36);
+registerHook("INTERACT", "blue_3", 77, "Code4", 2, 86, -36);
 registerHook("INTERACT", "blue_5", 77, "Code4", 4, 86, -36);

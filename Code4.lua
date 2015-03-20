@@ -199,24 +199,15 @@ end
 
 registerHook("REGION_ENTER", "green_lobby_teleport", "Code4-glta");
 
---local myWorld = World:new('Code4');
---local location = Location:new(myWorld, 0, 90, -51);
+local myWorld = World:new('Code4');
+local location = Location:new(myWorld, 0, 90, -51);
 
---function lobby_catch(data)
---       local targetPlayer = Player:new(data.player);
---       targetPlayer:teleport(location);
---end
-
---registerHook("REGION_ENTER", "lobby_catch", "Code4-lobby_catch");
-
-local location = Location:new(world, 0, 90, -51);
-
-function ctf_catch(data)
+function lobby_catch(data)
        local targetPlayer = Player:new(data.player);
        targetPlayer:teleport(location);
 end
 
-registerHook("REGION_ENTER", "ctf_catch", "Code4-ctf_catch");
+registerHook("REGION_ENTER", "lobby_catch", "Code4-lobby_catch");
 
 local location = Location:new(world, -44, 64, 0);
 

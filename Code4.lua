@@ -331,7 +331,7 @@ end
 
 registerHook("BLOCK_GAINS_CURRENT", "fireTick", "code4", -1, 82, -36);
 
--- Flag Pickups
+-- Flag Get
 --
 
 function flag_perror(player)
@@ -346,7 +346,8 @@ function get_blue_flag(data)
 	local player = Player:new(data.player);
         if isPlayerOnGreenTeam(player.name) then
                 bluefChest:cloneChestToPlayer(player.name);
-		player:sendMessage("&bYou have the Blue Flag! Return it to the Green base!");
+		a_broadcast_npc(Overlord, data.player .. " has stolen the &9Blue Flag&f!", player)
+                player:sendMessage("&cReturn the Blue flag to your base to score a point!");
         else
                flag_perror(player)
         end
@@ -357,7 +358,8 @@ function get_green_flag(data)
 	local player = Player:new(data.player);
         if isPlayerOnBlueTeam(player.name) then
                 greenfChest:cloneChestToPlayer(player.name);
-		player:sendMessage("&bYou have the Green Flag! Return it to the Blue base!");
+                a_broadcast_npc(Overlord, data.player .. " has stolen the &aGreen Flag&f!", player)
+		player:sendMessage("&cReturn the Green flag to your base to score a point!");
         else
                flag_perror(player)
         end

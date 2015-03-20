@@ -411,31 +411,6 @@ end
 registerHook("PLAYER_ITEM_DROP", "green_down", "Code4");
 registerHook("PLAYER_ITEM_DROP", "blue_down", "Code4");
 
-
--- Flag Returns
--- 
-
-function return_green_flag(data, key, location)
-        local player = Player:new(data.player);
-        if isPlayerOnGreenTeam(player.name) then
-        player:removeItemByName('Green Flag');
-        a_broadcast_npc(Overlord, data.player .. " has returned the &aGreen Flag&f!", player);
-    end
-end
-
-function return_blue_flag(data, key, location)
-        local player = Player:new(data.player);
-        if isPlayerOnBlueTeam(player.name) then
-        player:removeItemByName('Blue Flag');
-        a_broadcast_npc(Overlord, data.player .. " has returned the &9Blue Flag&f!", player);
-    end
-end
-
-registerHook("PLAYER_ITEM_PICKUP", "return_green_flag", "Code4")
-registerHook("PLAYER_ITEM_PICKUP", "return_blue_flag", "Code4")
-
-
-
 -- Flag Score
 --
 
@@ -467,6 +442,24 @@ end
 
 registerHook("INTERACT", "green_flag_score", 77, "Code4", 46, 75, 1);
 registerHook("INTERACT", "blue_flag_score", 77, "Code4", -46, 75, -1);
+
+-- Keeping Score
+--
+
+-- Game Over
+--
+
+local myWorld = World:new('Code4');
+local startLocation = Location:new(myWorld, 0, 90, -52);
+
+function matchComplete()
+    local players = {myWorld:getPlayers()};
+
+    for index, playerName in pairs(players) do
+        local player = Player:new(playerName);
+        player:teleport(startLocation);
+    end
+end
 
 -- Achievements
 --

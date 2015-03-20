@@ -370,8 +370,23 @@ registerHook("INTERACT", "get_green_flag", 77, "Code4", -46, 75, 1);
 -- Flag Drops
 --
 
--- Flag Carrier Deaths
---
+function green_down(data, key, location)
+         local player = Player:new(data.player);
+         if data.itemName == ("Green Flag") then
+         a_broadcast_npc(Overlord, data.player .. " has dropped the &aGreen Flag&f!", player);
+    end
+end
+
+function blue_down(data, key, location)
+         local player = Player:new(data.player);
+         if data.itemName == ("Blue Flag") then
+         a_broadcast_npc(Overlord, data.player .. " has dropped the &9Blue Flag&f!", player);
+    end
+end
+
+registerHook("PLAYER_ITEM_DROP", "green_down", "Code4");
+registerHook("PLAYER_ITEM_DROP", "blue_down", "Code4");
+
 
 -- Flag Score
 --

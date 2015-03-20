@@ -397,7 +397,7 @@ function removeInventoryFlags()
 end
 
 -- This is called when a player picks up an item.
-function item_pickup(data, key, location)
+function item_pickup(data)
          local player = Player:new(data.player);
 		 
 		 -- Check which flag was picked up, either green or blue.
@@ -412,7 +412,7 @@ function item_pickup(data, key, location)
 				-- The player has picked up the enemy flag, what a bastard!
 				a_broadcast_npc(Overlord, player.name .. " has picked up the &9Blue Flag&f!");
 			end
-		else if data.itemName == "Green Flag" then
+		elseif data.itemName == "Green Flag" then
 			-- Green flag was picked up.
 			if isPlayerOnGreenTeam(player.name) then
 				-- The player has picked up their own flag, return it to the base.

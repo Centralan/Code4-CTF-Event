@@ -442,7 +442,7 @@ function checkScores()
 		-- Blue team wins!
 		matchComplete();
 		
-		-- ToDo: Send a message and such!
+		a_broadcast_npc(Overlord, "&bThe &9Blue Team &bhas won CTF!", player);
 		
 		return;
 	end
@@ -451,7 +451,7 @@ function checkScores()
 		-- Green team wins!
 		matchComplete();
 		
-		-- ToDo: Send a message and such!
+		a_broadcast_npc(Overlord, "&aThe &2Green Team &ahas won CTF!", player);
 		
 		return;
 	end

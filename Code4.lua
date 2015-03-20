@@ -122,59 +122,49 @@ end
 
 function EventOverlord_Standby(data)
         local player = Player:new(data.player);
-        a_broadcast_npc(Overlord, "Code 4 is getting ready, please stand by!", player);
+        a_broadcast_npc(Overlord, "&6Code 4 is getting ready, please stand by!", player);
          soundblock:playSound('ZOMBIE_UNFECT', 10, 10);
 end
 
 function EventOverlord_Teams(data)
         local player = Player:new(data.player);
-        a_broadcast_npc(Overlord, "Players are now being split into 2 teams at random!", player);
+        a_broadcast_npc(Overlord, "&6Players are now being split into 2 teams at random!", player);
          soundblock:playSound('ZOMBIE_UNFECT', 10, 10);
 end
 
 function EventOverlord_Gear(data)
         local player = Player:new(data.player);
-        a_broadcast_npc(Overlord, "Both Teams have started gearing up!", player);
+        a_broadcast_npc(Overlord, "&6Both Teams have started gearing up!", player);
          soundblock:playSound('ZOMBIE_UNFECT', 10, 10);
 end
 
 
 function EventOverlord_Start30(data)
         local player = Player:new(data.player);
-        a_broadcast_npc(Overlord, "Code 4 initializing in 30 Seconds!", player);
+        a_broadcast_npc(Overlord, "&6Code 4 initializing in &d30 Seconds&6!", player);
          soundblock:playSound('NOTE_PLING', 1000, 10);
          soundblock:playSound('ORB_PICKUP', 1000, 10);
 end
 
 function EventOverlord_Start15(data)
         local player = Player:new(data.player);
-        a_broadcast_npc(Overlord, "Code 4 initializing in 15 Seconds!", player);
+        a_broadcast_npc(Overlord, "&6Code 4 initializing in &d15 Seconds&6!", player);
          soundblock:playSound('NOTE_PLING', 1000, 10);
          soundblock:playSound('ORB_PICKUP', 1000, 10);
 end
 
 function EventOverlord_Start10(data)
         local player = Player:new(data.player);
-        a_broadcast_npc(Overlord, "Code 4 initializing in 10 Seconds!", player);
+        a_broadcast_npc(Overlord, "&6Code 4 initializing in &d10 Seconds&6!", player);
          soundblock:playSound('NOTE_PLING', 1000, 10);
          soundblock:playSound('ORB_PICKUP', 1000, 10);
 end
 
 function EventOverlord_Start5(data)
         local player = Player:new(data.player);
-        a_broadcast_npc(Overlord, "Code 4 initializing in 5 Seconds!", player);
+        a_broadcast_npc(Overlord, "&6Code 4 initializing in &d5 Seconds&6!", player);
          soundblock:playSound('NOTE_PLING', 1000, 10);
          soundblock:playSound('ORB_PICKUP', 1000, 10);
-end
-
-function EventOverlord_bscore(data)
-        local player = Player:new(data.player);
-        a_broadcast_npc(Overlord, "&9Blue Team Has Scored a Point!", player);
-end
-
-function EventOverlord_gscore(data)
-        local player = Player:new(data.player);
-        a_broadcast_npc(Overlord, "&aGreen Team Has Scored a Point!", player);
 end
 
 registerHook("INTERACT", "EventOverlord_Teams", 77, "Code4", -3, 86, -35);
@@ -182,8 +172,6 @@ registerHook("INTERACT", "EventOverlord_Start30", 77, "Code4", -1, 86, -35);
 registerHook("INTERACT", "EventOverlord_Start15", 77, "Code4", 0, 86, -35);
 registerHook("INTERACT", "EventOverlord_Start10", 77, "Code4", 1, 86, -35);
 registerHook("INTERACT", "EventOverlord_Start5", 77, "Code4", 2, 86, -35);
-registerHook("INTERACT", "EventOverlord_bscore", 77, "Code4", 3, 86, -34);
-registerHook("INTERACT", "EventOverlord_gscore", 77, "Code4", -3, 86, -34);
 registerHook("INTERACT", "EventOverlord_Standby", 77, "Code4", -4, 86, -35);
 registerHook("INTERACT", "EventOverlord_Gear", 77, "Code4", -2, 86, -35);
 

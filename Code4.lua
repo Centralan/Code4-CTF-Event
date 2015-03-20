@@ -547,9 +547,6 @@ registerHook("REGION_ENTER", "ctf_event_prize", "spawn2-event_ctfportal");
 -- Green Scoreboard
 --
 
--- Green Scoreboard
---
-
 local current = 1;
 local maxData = 14;
 local blocks = {
@@ -758,6 +755,51 @@ function green_score_1()
 	end
 end
 
+local current = 1;
+local maxData = 14;
+local blocks = {
+	Location:new(world, -3.0, 91.0, 30.0),
+	Location:new(world, -4.0, 91.0, 30.0),
+	Location:new(world, -5.0, 91.0, 30.0),
+	Location:new(world, -6.0, 91.0, 30.0),
+	Location:new(world, -7.0, 91.0, 30.0),
+	Location:new(world, -8.0, 91.0, 30.0),
+	Location:new(world, -8.0, 90.0, 30.0),
+	Location:new(world, -8.0, 89.0, 30.0),
+	Location:new(world, -8.0, 88.0, 30.0),
+	Location:new(world, -7.0, 88.0, 30.0),
+	Location:new(world, -6.0, 88.0, 30.0),
+	Location:new(world, -5.0, 88.0, 30.0),
+	Location:new(world, -4.0, 88.0, 30.0),
+	Location:new(world, -3.0, 88.0, 30.0),
+	Location:new(world, -3.0, 87.0, 30.0),
+	Location:new(world, -3.0, 86.0, 30.0),
+	Location:new(world, -3.0, 85.0, 30.0),
+	Location:new(world, -3.0, 84.0, 30.0),
+	Location:new(world, -4.0, 84.0, 30.0),
+	Location:new(world, -5.0, 84.0, 30.0),
+	Location:new(world, -6.0, 84.0, 30.0),
+	Location:new(world, -7.0, 84.0, 30.0),
+	Location:new(world, -8.0, 84.0, 30.0),
+
+};
+
+function green_2(data)
+	if current == maxData then
+		current = 1;
+	else
+		current = current + 1;
+	end
+	green_score_2();
+end
+
+function green_score_2()
+	for index, key in ipairs(blocks) do
+		key:setBlock(89, current);
+	end
+end
+
 registerHook("INTERACT", "green_blank", 77, "Code4", -2, 88, -36);
 registerHook("INTERACT", "green_0", 77, "Code4", -1, 88, -36);
 registerHook("INTERACT", "green_1", 77, "Code4", 0, 88, -36);
+registerHook("INTERACT", "green_2", 77, "Code4", 1, 88, -36);

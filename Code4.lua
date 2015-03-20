@@ -342,30 +342,49 @@ local world = World:new('Code4');
 local bluefChest = Location:new(world, -4, 87, -40);
 local greenfChest = Location:new(world, -4, 86, -41);
 
+local greenFlagIsTaken = false;
+local blueFlagIsTaken = false;
+
 function get_blue_flag(data)
 	local player = Player:new(data.player);
-        if isPlayerOnGreenTeam(player.name) then
-                bluefChest:cloneChestToPlayer(player.name);
+	
+	if blueFlagIsTaken then
+		-- The flag isn't available, stop here.
+		return;
+	end
+	
+	if isPlayerOnGreenTeam(player.name) then
+		bluefChest:cloneChestToPlayer(player.name);
 		a_broadcast_npc(Overlord, data.player .. " has stolen the &9Blue Flag&f!", player)
-                player:sendMessage("&cReturn the Blue flag to your base to score a point!");
-                soundblock:playSound('AMBIENCE_THUNDER', 1000, 3);
-        else
-               flag_perror(player)
-        end
-
+		player:sendMessage("&cReturn the Blue flag to your base to score a point!");
+		soundblock:playSound('AMBIENCE_THUNDER', 1000, 3);
+		
+		-- Set the blue flag as taken.
+		blueFlagIsTaken = true;
+	else
+		flag_perror(player)
+	end
 end
 
 function get_green_flag(data)
 	local player = Player:new(data.player);
-        if isPlayerOnBlueTeam(player.name) then
-                greenfChest:cloneChestToPlayer(player.name);
-                a_broadcast_npc(Overlord, data.player .. " has stolen the &aGreen Flag&f!", player)
+	
+	if greenFlagIsTaken then
+		-- The flag isn't available, stop here.
+		return;
+	end
+	
+	if isPlayerOnBlueTeam(player.name) then
+		greenfChest:cloneChestToPlayer(player.name);
+		a_broadcast_npc(Overlord, data.player .. " has stolen the &aGreen Flag&f!", player)
 		player:sendMessage("&cReturn the Green flag to your base to score a point!");
-                soundblock:playSound('AMBIENCE_THUNDER', 1000, 3);
-        else
-               flag_perror(player)
-        end
-
+		soundblock:playSound('AMBIENCE_THUNDER', 1000, 3);
+		
+		-- Set the green flag as taken.
+		greenFlagIsTaken = true;
+	else
+	   flag_perror(player)
+	end
 end
 
 registerHook("INTERACT", "get_blue_flag", 77, "Code4", 46, 75, -1);
@@ -414,16 +433,48 @@ registerHook("PLAYER_ITEM_DROP", "blue_down", "Code4");
 -- Flag Score
 --
 
+local blueScore = 0;
+local greenScore = 0;
+local maxScore = 5;
+
+function checkScores()
+	if blueScore >= maxScore then
+		-- Blue team wins!
+		matchComplete();
+		
+		-- ToDo: Send a message and such!
+		
+		return;
+	end
+	
+	if greenScore >= maxScore then
+		-- Green team wins!
+		matchComplete();
+		
+		-- ToDo: Send a message and such!
+		
+		return;
+	end
+end
+
 function flag_score_error(player)
 	player:sendMessage("&4You need the correct flag to score!");
 end
 
 function green_flag_score(data, key, location)
 	local player = Player:new(data.player);
+	
 	if player:hasItemWithName('Green Flag') then
-		a_broadcast_npc(Overlord, data.player .. " &6has captured the Green Flag!", player);
-                a_broadcast_npc(Overlord, "&bThe &9Blue Team &bhas Scored a Point!", player);
-                soundblock:playSound('LAVA_POP', 1000, 50);
+		if not blueFlagIsTaken then
+			a_broadcast_npc(Overlord, data.player .. " &6has captured the Green Flag!", player);
+			a_broadcast_npc(Overlord, "&bThe &9Blue Team &bhas Scored a Point!", player);
+			soundblock:playSound('LAVA_POP', 1000, 50);
+			
+			blueScore = blueScore + 1; -- Add a point to the blue team.
+			checkScores(); -- Check the scores.
+		else
+			player:sendMessage("&4Your own flag must be at your base to capture the enemy flag!");
+		end
 	else
 		flag_score_error(player);
 	end
@@ -431,10 +482,18 @@ end
 
 function blue_flag_score(data, key, location)
 	local player = Player:new(data.player);
+		
 	if player:hasItemWithName('Blue Flag') then
-		a_broadcast_npc(Overlord, data.player .. " &6has captured the &bBlue Flag&6!", player);
-                a_broadcast_npc(Overlord, "&aThe &2Green Team &ahas Scored a Point!", player);
-                soundblock:playSound('LAVA_POP', 1000, 50);
+		if not greenFlagIsTaken then
+			a_broadcast_npc(Overlord, data.player .. " &6has captured the &bBlue Flag&6!", player);
+			a_broadcast_npc(Overlord, "&aThe &2Green Team &ahas Scored a Point!", player);
+			soundblock:playSound('LAVA_POP', 1000, 50);
+			
+			greenScore = greenScore + 1; -- Add a point to the green team.
+			checkScores(); -- Check the scores.
+		else
+			player:sendMessage("&4Your own flag must be at your base to capture the enemy flag!");
+		end
 	else
 		flag_score_error(player);
 	end
@@ -442,9 +501,6 @@ end
 
 registerHook("INTERACT", "green_flag_score", 77, "Code4", 46, 75, 1);
 registerHook("INTERACT", "blue_flag_score", 77, "Code4", -46, 75, -1);
-
--- Keeping Score
---
 
 -- Game Over
 --

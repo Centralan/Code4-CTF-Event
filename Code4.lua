@@ -449,7 +449,6 @@ registerHook("INTERACT", "blue_flag_score", 77, "Code4", -46, 75, -1);
 -- Game Over
 --
 
-local myWorld = World:new('Code4');
 local startLocation = Location:new(myWorld, 0, 90, -52);
 
 function matchComplete()

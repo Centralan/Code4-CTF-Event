@@ -348,6 +348,7 @@ function get_blue_flag(data)
                 bluefChest:cloneChestToPlayer(player.name);
 		a_broadcast_npc(Overlord, data.player .. " has stolen the &9Blue Flag&f!", player)
                 player:sendMessage("&cReturn the Blue flag to your base to score a point!");
+                soundblock:playSound('AMBIENCE_THUNDER', 1000, 3);
         else
                flag_perror(player)
         end
@@ -360,6 +361,7 @@ function get_green_flag(data)
                 greenfChest:cloneChestToPlayer(player.name);
                 a_broadcast_npc(Overlord, data.player .. " has stolen the &aGreen Flag&f!", player)
 		player:sendMessage("&cReturn the Green flag to your base to score a point!");
+                soundblock:playSound('AMBIENCE_THUNDER', 1000, 3);
         else
                flag_perror(player)
         end
@@ -368,6 +370,26 @@ end
 
 registerHook("INTERACT", "get_blue_flag", 77, "Code4", 46, 75, -1);
 registerHook("INTERACT", "get_green_flag", 77, "Code4", -46, 75, 1);
+
+-- Flag Pickup
+--
+
+function green_pickup(data, key, location)
+         local player = Player:new(data.player);
+         if data.itemName == ("Green Flag") then
+         a_broadcast_npc(Overlord, data.player .. " has picked up the &aGreen Flag&f!", player);
+    end
+end
+
+function blue_pickup(data, key, location)
+         local player = Player:new(data.player);
+         if data.itemName == ("Blue Flag") then
+         a_broadcast_npc(Overlord, data.player .. " has picked up the &9Blue Flag&f!", player);
+    end
+end
+
+registerHook("PLAYER_ITEM_PICKUP", "green_pickup", "Code4");
+registerHook("PLAYER_ITEM_PICKUP", "blue_pickup", "Code4");
 
 -- Flag Drops
 --
@@ -388,6 +410,10 @@ end
 
 registerHook("PLAYER_ITEM_DROP", "green_down", "Code4");
 registerHook("PLAYER_ITEM_DROP", "blue_down", "Code4");
+
+-- Flag Returns
+-- This is a place holder for text when the flag gets returned.
+--
 
 
 -- Flag Score

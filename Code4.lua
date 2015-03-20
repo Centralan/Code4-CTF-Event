@@ -346,7 +346,7 @@ function get_blue_flag(data)
 	
 	if isPlayerOnGreenTeam(player.name) then
 		bluefChest:cloneChestToPlayer(player.name);
-		a_broadcast_npc(Overlord, data.player .. " has stolen the &9Blue Flag&f!", player)
+		a_broadcast_npc(Overlord, data.player .. " has stolen the &9Blue Flag&f!")
 		player:sendMessage("&cReturn the Blue flag to your base to score a point!");
 		soundblock:playSound('AMBIENCE_THUNDER', 1000, 3);
 		
@@ -367,7 +367,7 @@ function get_green_flag(data)
 	
 	if isPlayerOnBlueTeam(player.name) then
 		greenfChest:cloneChestToPlayer(player.name);
-		a_broadcast_npc(Overlord, data.player .. " has stolen the &aGreen Flag&f!", player)
+		a_broadcast_npc(Overlord, data.player .. " has stolen the &aGreen Flag&f!")
 		player:sendMessage("&cReturn the Green flag to your base to score a point!");
 		soundblock:playSound('AMBIENCE_THUNDER', 1000, 3);
 		
@@ -384,22 +384,49 @@ registerHook("INTERACT", "get_green_flag", 77, "Code4", -46, 75, 1);
 -- Flag Pickup
 --
 
-function green_pickup(data, key, location)
-         local player = Player:new(data.player);
-         if data.itemName == ("Green Flag") then
-         a_broadcast_npc(Overlord, data.player .. " has picked up the &aGreen Flag&f!", player);
-    end
+local flagRemovalTimer = Timer:new("removeInventoryFlags", 1);
+local flagRemovalPipe = {};
+
+function removeInventoryFlags()
+	for k, v in pairs(flagRemovalPipe) do
+		v:removeItemByName("Blue Flag");
+		v:removeItemByName("Green Flag");
+		
+		flagRemovalPipe[k] = nil;
+	end
 end
 
-function blue_pickup(data, key, location)
+-- This is called when a player picks up an item.
+function item_pickup(data, key, location)
          local player = Player:new(data.player);
-         if data.itemName == ("Blue Flag") then
-         a_broadcast_npc(Overlord, data.player .. " has picked up the &9Blue Flag&f!", player);
-    end
+		 
+		 -- Check which flag was picked up, either green or blue.
+         if data.itemName == "Blue Flag" then
+			-- Blue flag was picked up.
+			if isPlayerOnBlueTeam(player.name) then
+				-- The player has picked up their own flag, return it to the base.
+				blueFlagIsTaken = false;
+				flagRemovalTimer:start();
+				a_broadcast_npc(Overlord, player.name .. " has returned the &9Blue Flag&f!");
+			else
+				-- The player has picked up the enemy flag, what a bastard!
+				a_broadcast_npc(Overlord, player.name .. " has picked up the &9Blue Flag&f!");
+			end
+		else if data.itemName == "Green Flag" then
+			-- Green flag was picked up.
+			if isPlayerOnGreenTeam(player.name) then
+				-- The player has picked up their own flag, return it to the base.
+				greenFlagIsTaken = false;	
+				flagRemovalTimer:start();
+				a_broadcast_npc(Overlord, player.name .. " has returned the &aGreen Flag&f!");
+			else
+				-- The player has picked up the enemy flag, what a bastard!
+				a_broadcast_npc(Overlord, player.name .. " has picked up the &aGreen Flag&f!");
+			end
+		end
 end
 
-registerHook("PLAYER_ITEM_PICKUP", "green_pickup", "Code4");
-registerHook("PLAYER_ITEM_PICKUP", "blue_pickup", "Code4");
+registerHook("PLAYER_ITEM_PICKUP", "item_pickup", "Code4");
 
 -- Flag Drops
 --
@@ -407,14 +434,14 @@ registerHook("PLAYER_ITEM_PICKUP", "blue_pickup", "Code4");
 function green_down(data, key, location)
          local player = Player:new(data.player);
          if data.itemName == ("Green Flag") then
-         a_broadcast_npc(Overlord, data.player .. " has dropped the &aGreen Flag&f!", player);
+         a_broadcast_npc(Overlord, data.player .. " has dropped the &aGreen Flag&f!");
     end
 end
 
 function blue_down(data, key, location)
          local player = Player:new(data.player);
          if data.itemName == ("Blue Flag") then
-         a_broadcast_npc(Overlord, data.player .. " has dropped the &9Blue Flag&f!", player);
+         a_broadcast_npc(Overlord, data.player .. " has dropped the &9Blue Flag&f!");
     end
 end
 
@@ -433,7 +460,7 @@ function checkScores()
 		-- Blue team wins!
 		matchComplete();
 		
-		a_broadcast_npc(Overlord, "&bThe &9Blue Team &bhas won CTF!", player);
+		a_broadcast_npc(Overlord, "&bThe &9Blue Team &bhas won CTF!");
 		
 		return;
 	end
@@ -442,7 +469,7 @@ function checkScores()
 		-- Green team wins!
 		matchComplete();
 		
-		a_broadcast_npc(Overlord, "&aThe &2Green Team &ahas won CTF!", player);
+		a_broadcast_npc(Overlord, "&aThe &2Green Team &ahas won CTF!");
 		
 		return;
 	end
@@ -457,8 +484,8 @@ function green_flag_score(data, key, location)
 	
 	if player:hasItemWithName('Green Flag') then
 		if not blueFlagIsTaken then
-			a_broadcast_npc(Overlord, data.player .. " &6has captured the Green Flag!", player);
-			a_broadcast_npc(Overlord, "&bThe &9Blue Team &bhas Scored a Point!", player);
+			a_broadcast_npc(Overlord, data.player .. " &6has captured the Green Flag!");
+			a_broadcast_npc(Overlord, "&bThe &9Blue Team &bhas Scored a Point!");
 			soundblock:playSound('LAVA_POP', 1000, 50);
 			
 			blueScore = blueScore + 1; -- Add a point to the blue team.
@@ -476,8 +503,8 @@ function blue_flag_score(data, key, location)
 		
 	if player:hasItemWithName('Blue Flag') then
 		if not greenFlagIsTaken then
-			a_broadcast_npc(Overlord, data.player .. " &6has captured the &bBlue Flag&6!", player);
-			a_broadcast_npc(Overlord, "&aThe &2Green Team &ahas Scored a Point!", player);
+			a_broadcast_npc(Overlord, data.player .. " &6has captured the &bBlue Flag&6!");
+			a_broadcast_npc(Overlord, "&aThe &2Green Team &ahas Scored a Point!");
 			soundblock:playSound('LAVA_POP', 1000, 50);
 			
 			greenScore = greenScore + 1; -- Add a point to the green team.

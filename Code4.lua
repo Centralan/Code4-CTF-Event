@@ -104,7 +104,7 @@ registerHook("CHAT_MESSAGE", "chatMonitor", "Code4");
 
 local world = World:new('Code4');
 local soundblock = Location:new(world, 0, 93, -30);
-local Overlord = 'Horae'
+local Overlord = 'Symvan'
 
 function a_broadcast(msg)
 	world:broadcast(msg);
@@ -167,13 +167,13 @@ function EventOverlord_Start5(data)
          soundblock:playSound('ORB_PICKUP', 1000, 10);
 end
 
-registerHook("INTERACT", "EventOverlord_Teams", 77, "Code4", -3, 86, -35);
-registerHook("INTERACT", "EventOverlord_Start30", 77, "Code4", -1, 86, -35);
-registerHook("INTERACT", "EventOverlord_Start15", 77, "Code4", 0, 86, -35);
-registerHook("INTERACT", "EventOverlord_Start10", 77, "Code4", 1, 86, -35);
-registerHook("INTERACT", "EventOverlord_Start5", 77, "Code4", 2, 86, -35);
+registerHook("INTERACT", "EventOverlord_Teams", 77, "Code4", -4, 86, -36);
+registerHook("INTERACT", "EventOverlord_Start30", 77, "Code4", -4, 86, -38);
+registerHook("INTERACT", "EventOverlord_Start15", 77, "Code4", -4, 86, -39);
+registerHook("INTERACT", "EventOverlord_Start10", 77, "Code4", -4, 86, -40);
+registerHook("INTERACT", "EventOverlord_Start5", 77, "Code4", -4, 86, -41);
 registerHook("INTERACT", "EventOverlord_Standby", 77, "Code4", -4, 86, -35);
-registerHook("INTERACT", "EventOverlord_Gear", 77, "Code4", -2, 86, -35);
+registerHook("INTERACT", "EventOverlord_Gear", 77, "Code4", -4, 86, -37);
 
 
 -- Teleport
@@ -263,7 +263,7 @@ registerHook("REGION_ENTER", "bsafe_arena2", "Code4-bsta2");
 --
 
 local world = World:new('Code4');
-local BlueGearChest = Location:new(world, -4, 86, -39);
+local BlueGearChest = Location:new(world, 1, 86, -43);
 local BlueTeamGearUp = Location:new(world, 40, 66, 0);
 local BluePlayers = {};
 
@@ -280,7 +280,7 @@ end
 registerHook("REGION_ENTER", "Blue_Team_Gear", "Code4-blta");
 
 local world = World:new('Code4');
-local GreenGearChest = Location:new(world, -4, 87, -42);
+local GreenGearChest = Location:new(world, 4, 85, -43);
 local GreenTeamGearUp = Location:new(world, -40, 66, 0);
 local GreenPlayers = {};
 
@@ -339,8 +339,8 @@ function flag_perror(player)
 end
 
 local world = World:new('Code4');
-local bluefChest = Location:new(world, -4, 87, -40);
-local greenfChest = Location:new(world, -4, 86, -41);
+local bluefChest = Location:new(world, 2, 85, -43);
+local greenfChest = Location:new(world, 3, 86, -43);
 
 local greenFlagIsTaken = false;
 local blueFlagIsTaken = false;

@@ -311,15 +311,17 @@ registerHook("REGION_ENTER", "blue_i_spawn", "Code4-blta");
 
 -- ToDo: Change blueSpawnPoint to the blue team graveyard.
 -- ToDo: Change greenSpawnPoint to the green team graveyard.
-local blueSpawnPoint = Location:new(world, 44, 64, 0);
-local greenSpawnPoint = Location:new(world, -44, 64, 0);
+local blueSpawnPoint = Location:new(world, -52, 64, 0);
+local greenSpawnPoint = Location:new(world, 52, 64, 0);
+local blueRespawnPoint = Location:new(world, 44, 64, 0);
+local greenRepawnPoint = Location:new(world, -44, 64, 0);
 
 local graveyardPlayers = {};
-local graveyardTimer = Timer:new(20, "handleGraveyard");
+local graveyardTimer = Timer:new(10, "handleGraveyard");
 graveyardTimer:startRepeating();
 
 function handleGraveyard()
-	-- This is called every 20 seconds.
+	-- This is called every 10 seconds.
 	-- Check all players in the graveyard and send them to the match.
 	for playerName, v in pairs(graveyardPlayers) do
 		local player = Player:new(playerName);
@@ -327,9 +329,9 @@ function handleGraveyard()
 		-- Make sure the player is still online and in the right world.
 		if player:isOnline and player:getLocation() == world.name then
 			if isPlayerOnGreenTeam(player.name) then
-				-- ToDo: Teleport the player to the green base?
+				targetPlayer:teleport(greenRepawnPoint);
 			elseif isPlayerOnBlueTeam(player.name) then
-				-- ToDo: Teleport the player to the blue base?
+				targetPlayer:teleport(blueRespawnPoint);
 			end
 		end
 		

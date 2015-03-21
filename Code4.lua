@@ -321,16 +321,21 @@ local graveyardTimer = Timer:new(10, "handleGraveyard");
 graveyardTimer:startRepeating();
 
 function handleGraveyard()
+	print("!! Graveyard check called !!");
 	-- This is called every 10 seconds.
 	-- Check all players in the graveyard and send them to the match.
 	for playerName, v in pairs(graveyardPlayers) do
 		local player = Player:new(playerName);
+		print("GY player found: " .. playerName);
 		
 		-- Make sure the player is still online and in the right world.
 		if player:isOnline() and player:getLocation() == world.name then
+			print("Player is online and in world");
 			if isPlayerOnGreenTeam(player.name) then
+				print("Player on green team porting");
 				targetPlayer:teleport(greenRepawnPoint);
 			elseif isPlayerOnBlueTeam(player.name) then
+				print("Player on blue team porting");
 				targetPlayer:teleport(blueRespawnPoint);
 			end
 		end

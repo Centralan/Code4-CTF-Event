@@ -319,12 +319,12 @@ function player_respawn(data)
         targetPlayer:clearInventory();
         targetPlayer:setHealth(20);
         targetPlayer:teleport(blueSpawnPoint);
-        BlueGearChest:cloneChestToPlayer(targetPlayer.name);
-    elseif isPlayerOnGreenTeam(targetPlayer.name) then
+        a_broadcast_npc(Overlord, data.player .. " has died.")
+      elseif isPlayerOnGreenTeam(targetPlayer.name) then
         targetPlayer:clearInventory();
         targetPlayer:setHealth(20);
         targetPlayer:teleport(greenSpawnPoint);
-        GreenGearChest:cloneChestToPlayer(targetPlayer.name);
+        a_broadcast_npc(Overlord, data.player .. " has died.")
     end
 end
 

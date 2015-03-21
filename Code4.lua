@@ -317,7 +317,7 @@ local blueRespawnPoint = Location:new(world, 44, 64, 0);
 local greenRepawnPoint = Location:new(world, -44, 64, 0);
 
 local graveyardPlayers = {};
-local graveyardTimer = Timer:new(10, "handleGraveyard");
+local graveyardTimer = Timer:new(handleGraveyard, "10");
 
 function handleGraveyard()
 	print("!! Graveyard check called !!");

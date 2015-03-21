@@ -321,6 +321,8 @@ registerHook("BLOCK_GAINS_CURRENT", "fireTick", "code4", -1, 82, -36);
 
 local blueSpawnPoint = Location:new(world, 44, 64, 0);
 local greenSpawnPoint = Location:new(world, -44, 64, 0);
+local GreenGearChest = Location:new(world, 4, 85, -43);
+local BlueGearChest = Location:new(world, 1, 86, -43);
 
 function player_respawn(data)
     local targetPlayer = Player:new(data.player);
@@ -329,9 +331,11 @@ function player_respawn(data)
         targetPlayer:clearInventory();
         targetPlayer:setHealth(20);
         targetPlayer:teleport(blueSpawnPoint);
+        BlueGearChest:cloneChestToPlayer(player.name);
     elseif isPlayerOnGreenTeam(targetPlayer.name) then
         targetPlayer:clearInventory();
         targetPlayer:setHealth(20);
+        GreenGearChest:cloneChestToPlayer(player.name);
         targetPlayer:teleport(greenSpawnPoint);
     end
 end

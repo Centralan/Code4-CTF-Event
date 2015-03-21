@@ -317,10 +317,9 @@ local blueRespawnPoint = Location:new(world, 44, 64, 0);
 local greenRepawnPoint = Location:new(world, -44, 64, 0);
 
 local graveyardPlayers = {};
-local graveyardTimer = Timer:new("handleGraveyard", 10);
+local graveyardTimer = Timer:new("handleGraveyard", 450);
 
 function handleGraveyard()
-	-- This is called every 10 seconds.
 	-- Check all players in the graveyard and send them to the match.
 	for playerName, v in pairs(graveyardPlayers) do
 		local player = Player:new(playerName);

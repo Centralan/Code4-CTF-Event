@@ -245,6 +245,8 @@ end
 
 registerHook("REGION_ENTER", "bsafe_arena2", "Code4-bsta2");
 
+
+
 -- Team Gear Up
 --
 
@@ -317,28 +319,20 @@ registerHook("BLOCK_GAINS_CURRENT", "fireTick", "code4", -1, 82, -36);
 -- Respawning
 --
 
-local location = Location:new(myWorld, 44, 64, 0);
+local blueSpawnPoint = Location:new(world, 44, 64, 0);
+local greenSpawnPoint = Location:new(world, -44, 64, 0);
 
-function blue_respawn(data)
-         local targetPlayer = Player:new(data.player);
-         if isPlayerOnBlueTeam(playerName) then
-         targetPlayer:teleport(location);
+function player_respawn(data)
+    local targetPlayer = Player:new(data.player);
+
+    if isPlayerOnBlueTeam(targetPlayer.name) then
+        targetPlayer:teleport(blueSpawnPoint);
+    elseif isPlayerOnGreenTeam(targetPlayer.name) then
+        targetPlayer:teleport(greenSpawnPoint);
     end
 end
 
-registerHook("PLAYER_DEATH", "blue_respawn", "Code4");
-
-
-local location = Location:new(myWorld, -44, 64, 0);
-
-function green_respawn(data)
-         local targetPlayer = Player:new(data.player);
-         if isPlayerOnGreenTeam(playerName) then
-         targetPlayer:teleport(location);
-    end
-end
-
-registerHook("PLAYER_DEATH", "green_respawn", "Code4");
+registerHook("PLAYER_DEATH", "player_respawn", "Code4");
 
 
 

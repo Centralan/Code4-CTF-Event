@@ -328,9 +328,9 @@ function handleGraveyard()
 		-- Make sure the player is still online and in the right world.
 		if player:isOnline() and player:getLocation() == world.name then
 			if isPlayerOnGreenTeam(player.name) then
-				Player:teleport(greenRepawnPoint);
+				player:teleport(greenRepawnPoint);
 			elseif isPlayerOnBlueTeam(player.name) then
-				Player:teleport(blueRespawnPoint);
+				player:teleport(blueRespawnPoint);
 			end
 		end
 		

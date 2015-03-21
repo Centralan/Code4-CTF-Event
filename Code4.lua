@@ -30,6 +30,8 @@ function isPlayerOnGreenTeam(playerName)
 	return greenTeamPlayers[playerName] == true;	
 end
 
+
+
 -- Team Chat Detection
 --
 
@@ -98,6 +100,8 @@ function chatMonitor(data)
 end
 
 registerHook("CHAT_MESSAGE", "chatMonitor", "Code4");
+
+
 
 -- AI
 --
@@ -176,28 +180,9 @@ registerHook("INTERACT", "EventOverlord_Standby", 77, "Code4", -4, 86, -35);
 registerHook("INTERACT", "EventOverlord_Gear", 77, "Code4", -4, 86, -37);
 
 
--- Teleport
+
+-- Lobby
 --
-
-local myWorld = World:new('Code4');
-local location = Location:new(myWorld, 44, 64, 0);
-
-function blue_lobby_teleport(data)
-       local targetPlayer = Player:new(data.player);
-       targetPlayer:teleport(location);
-end
-
-registerHook("REGION_ENTER", "blue_lobby_teleport", "Code4-blta");
-
-local myWorld = World:new('Code4');
-local location = Location:new(myWorld, -44, 64, 0);
-
-function green_lobby_teleport(data)
-       local targetPlayer = Player:new(data.player);
-       targetPlayer:teleport(location);
-end
-
-registerHook("REGION_ENTER", "green_lobby_teleport", "Code4-glta");
 
 local myWorld = World:new('Code4');
 local location = Location:new(myWorld, 0, 90, -51);
@@ -208,42 +193,6 @@ function lobby_catch(data)
 end
 
 registerHook("REGION_ENTER", "lobby_catch", "Code4-lobby_catch");
-
-local location = Location:new(world, -44, 64, 0);
-
-function gsafe_arena1(data)
-       local targetPlayer = Player:new(data.player);
-       targetPlayer:teleport(location);
-end
-
-registerHook("REGION_ENTER", "gsafe_arena1", "Code4-gsta1");
-
-local location = Location:new(world, -44, 64, 0);
-
-function gsafe_arena2(data)
-       local targetPlayer = Player:new(data.player);
-       targetPlayer:teleport(location);
-end
-
-registerHook("REGION_ENTER", "gsafe_arena2", "Code4-gsta2");
-
-local location = Location:new(world, 44, 64, 0);
-
-function bsafe_arena1(data)
-       local targetPlayer = Player:new(data.player);
-       targetPlayer:teleport(location);
-end
-
-registerHook("REGION_ENTER", "bsafe_arena1", "Code4-bsta1");
-
-local location = Location:new(world, 44, 64, 0);
-
-function bsafe_arena2(data)
-       local targetPlayer = Player:new(data.player);
-       targetPlayer:teleport(location);
-end
-
-registerHook("REGION_ENTER", "bsafe_arena2", "Code4-bsta2");
 
 
 
@@ -283,6 +232,8 @@ end
 
 registerHook("REGION_ENTER", "Green_Team_Gear", "Code4-glta");
 
+
+
 -- Effects for Flags
 --
 
@@ -315,6 +266,45 @@ function processPlayers(players)
 end
 
 registerHook("BLOCK_GAINS_CURRENT", "fireTick", "code4", -1, 82, -36);
+
+
+
+-- I.spawning (Green Team)
+--
+
+local randomSpots = {
+	Location:new(world, -44, 64, 5),
+	Location:new(world, -44, 64, 0),
+	Location:new(world, -44, 64, -5)
+};
+
+function green_i_spawn(data)
+	local player = Player:new(data.player);
+	player:teleport(randomSpots[math.random(1, #randomSpots)]);
+        
+end
+
+registerHook("REGION_ENTER", "green_i_spawn", "Code4-glta");
+
+
+
+-- I.spawning (Blue Team)
+--
+local randomSpots = {
+	Location:new(world, 44, 64, -5),
+	Location:new(world, 44, 64, 0),
+	Location:new(world, 44, 64, 5)
+};
+
+function blue_i_spawn(data)
+	local player = Player:new(data.player);
+	player:teleport(randomSpots[math.random(1, #randomSpots)]);
+        
+end
+
+registerHook("REGION_ENTER", "blue_i_spawn", "Code4-blta");
+
+
 
 -- Respawning
 --
@@ -400,6 +390,8 @@ end
 registerHook("INTERACT", "get_blue_flag", 77, "Code4", 46, 75, -1);
 registerHook("INTERACT", "get_green_flag", 77, "Code4", -46, 75, 1);
 
+
+
 -- Flag Pickup
 --
 
@@ -447,6 +439,8 @@ end
 
 registerHook("PLAYER_ITEM_PICKUP", "item_pickup", "Code4");
 
+
+
 -- Flag Drops
 --
 
@@ -466,6 +460,8 @@ end
 
 registerHook("PLAYER_ITEM_DROP", "green_down", "Code4");
 registerHook("PLAYER_ITEM_DROP", "blue_down", "Code4");
+
+
 
 -- Flag Score
 --
@@ -554,6 +550,8 @@ end
 registerHook("INTERACT", "green_flag_score", 77, "Code4", 46, 75, 1);
 registerHook("INTERACT", "blue_flag_score", 77, "Code4", -46, 75, -1);
 
+
+
 -- Game Over
 --
 
@@ -568,6 +566,8 @@ function matchComplete()
     end
 end
 
+
+
 -- Achievements
 --
 
@@ -577,6 +577,8 @@ function ctf_event_prize(data)
 end
 
 registerHook("REGION_ENTER", "ctf_event_prize", "spawn2-event_ctfportal");
+
+
 
 -- Tramps
 --
@@ -592,6 +594,11 @@ registerHook("REGION_ENTER", "tramp", "Code4-tramp3");
 registerHook("REGION_ENTER", "tramp", "Code4-tramp4");
 registerHook("REGION_ENTER", "tramp", "Code4-tramp5");
 registerHook("REGION_ENTER", "tramp", "Code4-tramp6");
+
+
+
+
+
 
 -- Green Scoreboard
 --

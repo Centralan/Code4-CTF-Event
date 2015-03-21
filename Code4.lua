@@ -309,23 +309,53 @@ registerHook("REGION_ENTER", "blue_i_spawn", "Code4-blta");
 -- Respawning
 --
 
+-- ToDo: Change blueSpawnPoint to the blue team graveyard.
+-- ToDo: Change greenSpawnPoint to the green team graveyard.
 local blueSpawnPoint = Location:new(world, 44, 64, 0);
 local greenSpawnPoint = Location:new(world, -44, 64, 0);
 
+local graveyardPlayers = {};
+local graveyardTimer = Timer:new(20, "handleGraveyard");
+graveyardTimer:startRepeating();
+
+function handleGraveyard()
+	-- This is called every 20 seconds.
+	-- Check all players in the graveyard and send them to the match.
+	for playerName, v in pairs(graveyardPlayers) do
+		local player = Player:new(playerName);
+		
+		-- Make sure the player is still online and in the right world.
+		if player:isOnline and player:getLocation() == world.name then
+			if isPlayerOnGreenTeam(player.name) then
+				-- ToDo: Teleport the player to the green base?
+			elseif isPlayerOnBlueTeam(player.name) then
+				-- ToDo: Teleport the player to the blue base?
+			end
+		end
+		
+		-- Unmark the player from the graveyard list.
+		graveyardPlayers[playerName] = nil;
+	end
+end
+
 function player_respawn(data)
     local targetPlayer = Player:new(data.player);
+	local moveTo = nil;
 
+	-- Check which team the player is on and set moveTo to their spawn.
     if isPlayerOnBlueTeam(targetPlayer.name) then
-        targetPlayer:clearInventory();
-        targetPlayer:setHealth(20);
-        targetPlayer:teleport(blueSpawnPoint);
-        a_broadcast_npc(Overlord, data.player .. " has died.")
+		moveTo = blueSpawnPoint;
       elseif isPlayerOnGreenTeam(targetPlayer.name) then
-        targetPlayer:clearInventory();
-        targetPlayer:setHealth(20);
-        targetPlayer:teleport(greenSpawnPoint);
-        a_broadcast_npc(Overlord, data.player .. " has died.")
+		moveTo = greenSpawnPoint;
     end
+	
+	if moveTo ~= nil then
+		targetPlayer:clearInventory(); -- Wipe the players inventory.
+        targetPlayer:setHealth(20); -- Set their health back to full.
+        targetPlayer:teleport(moveTo); -- Teleport to the graveyard.
+        a_broadcast_npc(Overlord, data.player .. " has died."); -- Annouce the death in chat.
+		graveyardPlayers[targetPlayer.name] = true; -- Mark the player as dead so they will respawn.
+	end
 end
 
 registerHook("PLAYER_DEATH", "player_respawn", "Code4");

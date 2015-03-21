@@ -578,6 +578,21 @@ end
 
 registerHook("REGION_ENTER", "ctf_event_prize", "spawn2-event_ctfportal");
 
+-- Tramps
+--
+
+function tramp(data)
+	local player = Player:new(data.player);
+	player:setVelocity(0, 1, 0);
+end
+
+registerHook("REGION_ENTER", "tramp", "Code4-tramp1");
+registerHook("REGION_ENTER", "tramp", "Code4-tramp2");
+registerHook("REGION_ENTER", "tramp", "Code4-tramp3");
+registerHook("REGION_ENTER", "tramp", "Code4-tramp4");
+registerHook("REGION_ENTER", "tramp", "Code4-tramp5");
+registerHook("REGION_ENTER", "tramp", "Code4-tramp6");
+
 -- Green Scoreboard
 --
 

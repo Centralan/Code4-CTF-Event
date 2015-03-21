@@ -445,6 +445,7 @@ registerHook("PLAYER_ITEM_DROP", "blue_down", "Code4");
 local blueScore = 0;
 local greenScore = 0;
 local maxScore = 5;
+local players = {world:getPlayers()};
 
 function checkScores()
 	if blueScore >= maxScore then
@@ -452,6 +453,12 @@ function checkScores()
 		matchComplete();
 		
 		a_broadcast_npc(Overlord, "&bThe &9Blue Team &bhas won CTF!");
+for index, playerName in pairs(players) do
+    if isPlayerOnBlueTeam(playerName) then
+        local player = Player:new(playerName);
+        player:sendEvent("achievement.ctfeventmarchvictor");
+    end
+end
 		
 		return;
 	end
@@ -461,6 +468,12 @@ function checkScores()
 		matchComplete();
 		
 		a_broadcast_npc(Overlord, "&aThe &2Green Team &ahas won CTF!");
+                for index, playerName in pairs(players) do
+    if isPlayerOnGreenTeam(playerName) then
+        local player = Player:new(playerName);
+        player:sendEvent("achievement.ctfeventmarchvictor");
+    end
+end
 		
 		return;
 	end

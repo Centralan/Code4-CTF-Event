@@ -452,7 +452,6 @@ function checkScores()
 		matchComplete();
 		
 		a_broadcast_npc(Overlord, "&bThe &9Blue Team &bhas won CTF!");
-                p:sendEvent("achievement.ctfeventmarchvictor");
 		
 		return;
 	end
@@ -462,7 +461,6 @@ function checkScores()
 		matchComplete();
 		
 		a_broadcast_npc(Overlord, "&aThe &2Green Team &ahas won CTF!");
-                p:sendEvent("achievement.ctfeventmarchvictor");
 		
 		return;
 	end

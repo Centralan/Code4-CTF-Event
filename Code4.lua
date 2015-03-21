@@ -491,6 +491,7 @@ function green_flag_score(data, key, location)
 			a_broadcast_npc(Overlord, data.player .. " &6has captured the Green Flag!");
 			a_broadcast_npc(Overlord, "&bThe &9Blue Team &bhas Scored a Point!");
 			soundblock:playSound('LAVA_POP', 1000, 50);
+                        player:removeItemByName('Green Flag');
 			
 			blueScore = blueScore + 1; -- Add a point to the blue team.
 			checkScores(); -- Check the scores.
@@ -510,6 +511,7 @@ function blue_flag_score(data, key, location)
 			a_broadcast_npc(Overlord, data.player .. " &6has captured the &bBlue Flag&6!");
 			a_broadcast_npc(Overlord, "&aThe &2Green Team &ahas Scored a Point!");
 			soundblock:playSound('LAVA_POP', 1000, 50);
+                        player:removeItemByName('Blue Flag');
 			
 			greenScore = greenScore + 1; -- Add a point to the green team.
 			checkScores(); -- Check the scores.
@@ -823,11 +825,7 @@ local blocks = {
 	Location:new(world, -5.0, 88.0, 30.0),
 	Location:new(world, -6.0, 88.0, 30.0),
 	Location:new(world, -7.0, 88.0, 30.0),
-	Location:new(world, -4.0, 87.0, 30.0),
-	Location:new(world, -5.0, 87.0, 30.0),
-	Location:new(world, -6.0, 87.0, 30.0),
-	Location:new(world, -7.0, 87.0, 30.0),
-	Location:new(world, -3.0, 84.0, 30.0),
+        Location:new(world, -3.0, 84.0, 30.0),
 	Location:new(world, -4.0, 84.0, 30.0),
 	Location:new(world, -5.0, 84.0, 30.0),
 	Location:new(world, -6.0, 84.0, 30.0),
@@ -1210,10 +1208,6 @@ local blocks = {
 	Location:new(world, 5.0, 88.0, 30.0),
 	Location:new(world, 6.0, 88.0, 30.0),
 	Location:new(world, 7.0, 88.0, 30.0),
-	Location:new(world, 4.0, 87.0, 30.0),
-	Location:new(world, 5.0, 87.0, 30.0),
-	Location:new(world, 6.0, 87.0, 30.0),
-	Location:new(world, 7.0, 87.0, 30.0),
 	Location:new(world, 3.0, 84.0, 30.0),
 	Location:new(world, 4.0, 84.0, 30.0),
 	Location:new(world, 5.0, 84.0, 30.0),

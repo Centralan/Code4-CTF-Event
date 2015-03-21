@@ -326,11 +326,11 @@ function player_respawn(data)
     local targetPlayer = Player:new(data.player);
 
     if isPlayerOnBlueTeam(targetPlayer.name) then
+        targetPlayer:setHealth(20);
         targetPlayer:teleport(blueSpawnPoint);
-        targetPlayer:setHealth(20);
     elseif isPlayerOnGreenTeam(targetPlayer.name) then
-        targetPlayer:teleport(greenSpawnPoint);
         targetPlayer:setHealth(20);
+        targetPlayer:teleport(greenSpawnPoint);
     end
 end
 

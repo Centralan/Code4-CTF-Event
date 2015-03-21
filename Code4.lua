@@ -318,7 +318,6 @@ local greenRepawnPoint = Location:new(world, -44, 64, 0);
 
 local graveyardPlayers = {};
 local graveyardTimer = Timer:new(10, "handleGraveyard");
-graveyardTimer:startRepeating();
 
 function handleGraveyard()
 	print("!! Graveyard check called !!");
@@ -344,6 +343,8 @@ function handleGraveyard()
 		graveyardPlayers[playerName] = nil;
 	end
 end
+
+graveyardTimer:startRepeating();
 
 function player_respawn(data)
     local targetPlayer = Player:new(data.player);

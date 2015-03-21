@@ -327,8 +327,10 @@ function player_respawn(data)
 
     if isPlayerOnBlueTeam(targetPlayer.name) then
         targetPlayer:teleport(blueSpawnPoint);
+        player:setHealth(20)
     elseif isPlayerOnGreenTeam(targetPlayer.name) then
         targetPlayer:teleport(greenSpawnPoint);
+        player:setHealth(20)
     end
 end
 

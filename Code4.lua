@@ -314,6 +314,34 @@ end
 
 registerHook("BLOCK_GAINS_CURRENT", "fireTick", "code4", -1, 82, -36);
 
+-- Respawning
+--
+
+local location = Location:new(myWorld, 44, 64, 0);
+
+function blue_respawn(data)
+         local targetPlayer = Player:new(data.player);
+         if isPlayerOnBlueTeam(playerName) then
+         targetPlayer:teleport(location);
+    end
+end
+
+registerHook("PLAYER_DEATH", "blue_respawn", "Code4");
+
+
+local location = Location:new(myWorld, -44, 64, 0);
+
+function green_respawn(data)
+         local targetPlayer = Player:new(data.player);
+         if isPlayerOnGreenTeam(playerName) then
+         targetPlayer:teleport(location);
+    end
+end
+
+registerHook("PLAYER_DEATH", "green_respawn", "Code4");
+
+
+
 -- Flag Get
 --
 
@@ -511,7 +539,7 @@ function blue_flag_score(data, key, location)
 			a_broadcast_npc(Overlord, data.player .. " &6has captured the &bBlue Flag&6!");
 			a_broadcast_npc(Overlord, "&aThe &2Green Team &ahas Scored a Point!");
 			soundblock:playSound('LAVA_POP', 1000, 50);
-                        player:removeItemByName('Blue Flag');
+                        player:removeItemByName("Blue Flag");
 			
 			greenScore = greenScore + 1; -- Add a point to the green team.
 			checkScores(); -- Check the scores.

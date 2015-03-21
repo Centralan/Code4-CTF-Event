@@ -309,8 +309,6 @@ registerHook("REGION_ENTER", "blue_i_spawn", "Code4-blta");
 -- Respawning
 --
 
--- ToDo: Change blueSpawnPoint to the blue team graveyard.
--- ToDo: Change greenSpawnPoint to the green team graveyard.
 local blueSpawnPoint = Location:new(world, -52, 64, 0);
 local greenSpawnPoint = Location:new(world, 52, 64, 0);
 local blueRespawnPoint = Location:new(world, 44, 64, 0);
@@ -318,6 +316,40 @@ local greenRepawnPoint = Location:new(world, -44, 64, 0);
 
 local graveyardPlayers = {};
 local graveyardTimer = Timer:new("handleGraveyard", 450);
+
+local greenRespawns = {
+	Location:new(world, -38, 64, -9),
+	Location:new(world, -36, 64, 9),
+	Location:new(world, -36, 64, 1),
+	Location:new(world, -37, 69, 22),
+	Location:new(world, -22, 69, 0),
+	Location:new(world, -27, 64, -15),
+	Location:new(world, -17, 64, -26),
+	Location:new(world, -39, 64, -26),
+	Location:new(world, -45, 74, 7),
+	Location:new(world, -17, 64, 18),
+	Location:new(world, -19, 64, -4),
+	Location:new(world, -45, 64, -11),
+	Location:new(world, -47, 64, 11),
+	Location:new(world, -23, 69, 25)
+};
+
+local blueRespawns = {
+	Location:new(world, 45, 74, -6),
+	Location:new(world, 37, 69, 22),
+	Location:new(world, 22, 69, 20),
+	Location:new(world, 17, 69, -21),
+	Location:new(world, 41, 69, -22),
+	Location:new(world, 32, 64, -18),
+	Location:new(world, 13, 64, -15),
+	Location:new(world, 27, 64, 0),
+	Location:new(world, 35, 64, 9),
+	Location:new(world, 38, 64, 1),
+	Location:new(world, 34, 64, -10),
+	Location:new(world, 46, 64, 11),
+	Location:new(world, 45, 64, -10),
+	Location:new(world, 8, 64, 16)
+};
 
 function handleGraveyard()
 	-- Check all players in the graveyard and send them to the match.
@@ -327,9 +359,9 @@ function handleGraveyard()
 		-- Make sure the player is still online and in the right world.
 		if player:isOnline() and player:getLocation() == world.name then
 			if isPlayerOnGreenTeam(player.name) then
-				player:teleport(greenRepawnPoint);
+				player:teleport(greenRespawns[math.random(1, #greenRespawns)]);
 			elseif isPlayerOnBlueTeam(player.name) then
-				player:teleport(blueRespawnPoint);
+				player:teleport(blueRespawns[math.random(1, #blueRespawns)]);
 			end
 		end
 		

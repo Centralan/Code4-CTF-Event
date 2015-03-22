@@ -451,8 +451,8 @@ function get_green_flag(data)
 	end
 end
 
-registerHook("INTERACT", "get_blue_flag", 77, "Code4", 46, 75, -1);
-registerHook("INTERACT", "get_green_flag", 77, "Code4", -46, 75, 1);
+registerHook("REGION_ENTER", "get_blue_flag", "Code4-blue_flag");
+registerHook("REGION_ENTER", "get_green_flag", "Code4-green_flag");
 
 
 
@@ -619,8 +619,8 @@ function blue_flag_score(data, key, location)
 	end
 end
 
-registerHook("INTERACT", "green_flag_score", 77, "Code4", 46, 75, 1);
-registerHook("INTERACT", "blue_flag_score", 77, "Code4", -46, 75, -1);
+registerHook("REGION_ENTER", "green_flag_score", "Code4-blue_flag");
+registerHook("REGION_ENTER", "blue_flag_score", "Code4-green_flag");
 
 
 

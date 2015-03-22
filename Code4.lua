@@ -123,25 +123,11 @@ function a_whisper_npc(npc, msg, player)
 	player:sendMessage('&f[C4] &b' .. npc .. ' &3-> &f' .. msg);
 end
 
-
-function EventOverlord_Standby(data)
-        local player = Player:new(data.player);
-        a_broadcast_npc(Overlord, "&6Code 4 is getting ready, please stand by!", player);
-         soundblock:playSound('ZOMBIE_UNFECT', 10, 10);
-end
-
 function EventOverlord_Teams(data)
         local player = Player:new(data.player);
-        a_broadcast_npc(Overlord, "&6Players are now being split into 2 teams at random!", player);
-         soundblock:playSound('ZOMBIE_UNFECT', 10, 10);
+        a_broadcast_npc(Overlord, "&6Players are now being split into 2 teams at random. If you leave your box you will not play!", player);
+         soundblock:playSound('ZOMBIE_UNFECT', 1000, 10);
 end
-
-function EventOverlord_Gear(data)
-        local player = Player:new(data.player);
-        a_broadcast_npc(Overlord, "&6Both Teams have started gearing up!", player);
-         soundblock:playSound('ZOMBIE_UNFECT', 10, 10);
-end
-
 
 function EventOverlord_Start30(data)
         local player = Player:new(data.player);
@@ -176,8 +162,6 @@ registerHook("INTERACT", "EventOverlord_Start30", 77, "Code4", -4, 86, -38);
 registerHook("INTERACT", "EventOverlord_Start15", 77, "Code4", -4, 86, -39);
 registerHook("INTERACT", "EventOverlord_Start10", 77, "Code4", -4, 86, -40);
 registerHook("INTERACT", "EventOverlord_Start5", 77, "Code4", -4, 86, -41);
-registerHook("INTERACT", "EventOverlord_Standby", 77, "Code4", -4, 86, -35);
-registerHook("INTERACT", "EventOverlord_Gear", 77, "Code4", -4, 86, -37);
 
 
 
@@ -208,8 +192,10 @@ function Blue_Team_Gear(data)
 	if BluePlayers[player.name] == nil then
 		BluePlayers[player.name] = true;
 		BlueGearChest:cloneChestToPlayer(player.name);
-		player:sendMessage("&dGet your gear on and get ready for the glass to vanish!");
                 BlueTeamGearUp:playSound('HORSE_SADDLE', 1, 0);
+                a_broadcast_npc(Overlord, "&6Both Teams have been teleported to thier bases!", player);
+                a_broadcast_npc(Overlord, "&eGear up and get ready!", player);
+                soundblock:playSound('ZOMBIE_UNFECT', 1000, 10);
 	end
 end
 
@@ -225,7 +211,6 @@ function Green_Team_Gear(data)
 	if GreenPlayers[player.name] == nil then
 		GreenPlayers[player.name] = true;
 		GreenGearChest:cloneChestToPlayer(player.name);
-		player:sendMessage("&dGet your gear on and get ready for the glass to vanish!");
                 GreenTeamGearUp:playSound('HORSE_SADDLE', 1, 0);
 	end
 end

@@ -399,10 +399,6 @@ registerHook("PLAYER_DEATH", "player_respawn", "Code4");
 -- Flag Get
 --
 
-function flag_perror(player)
-	player:sendMessage("&4Sorry you can't take your own flag from your base.");
-end
-
 local bluefChest = Location:new(world, 2, 85, -43);
 local greenfChest = Location:new(world, 3, 86, -43);
 
@@ -425,9 +421,7 @@ function get_blue_flag(data)
 		
 		-- Set the blue flag as taken.
 		blueFlagIsTaken = true;
-	else
-		flag_perror(player)
-	end
+    end
 end
 
 function get_green_flag(data)
@@ -446,9 +440,7 @@ function get_green_flag(data)
 		
 		-- Set the green flag as taken.
 		greenFlagIsTaken = true;
-	else
-	   flag_perror(player)
-	end
+    end
 end
 
 registerHook("REGION_ENTER", "get_blue_flag", "Code4-blue_flag");
@@ -569,10 +561,6 @@ end
 	end
 end
 
-function flag_score_error(player)
-	player:sendMessage("&4You need the correct flag to score!");
-end
-
 function green_flag_score(data, key, location)
 	local player = Player:new(data.player);
 	
@@ -591,9 +579,7 @@ function green_flag_score(data, key, location)
 		else
 			player:sendMessage("&4Your own flag must be at your base to capture the enemy flag!");
 		end
-	else
-		flag_score_error(player);
-	end
+    end
 end
 
 function blue_flag_score(data, key, location)
@@ -614,9 +600,7 @@ function blue_flag_score(data, key, location)
 		else
 			player:sendMessage("&4Your own flag must be at your base to capture the enemy flag!");
 		end
-	else
-		flag_score_error(player);
-	end
+    end
 end
 
 registerHook("REGION_ENTER", "green_flag_score", "Code4-blue_flag");

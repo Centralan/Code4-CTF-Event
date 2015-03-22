@@ -481,6 +481,7 @@ function item_pickup(data)
 			if isPlayerOnBlueTeam(player.name) then
 				-- The player has picked up their own flag, return it to the base.
 				blueFlagIsTaken = false;
+				table.insert(flagRemovalPipe, player);
 				flagRemovalTimer:start();
 				a_broadcast_npc(Overlord, player.name .. " has returned the &9Blue Flag&f!");
 			else
@@ -492,6 +493,7 @@ function item_pickup(data)
 			if isPlayerOnGreenTeam(player.name) then
 				-- The player has picked up their own flag, return it to the base.
 				greenFlagIsTaken = false;	
+				table.insert(flagRemovalPipe, player);
 				flagRemovalTimer:start();
 				a_broadcast_npc(Overlord, player.name .. " has returned the &aGreen Flag&f!");
 			else
@@ -579,7 +581,9 @@ function green_flag_score(data, key, location)
 			a_broadcast_npc(Overlord, data.player .. " &6has captured the Green Flag!");
 			a_broadcast_npc(Overlord, "&bThe &9Blue Team &bhas Scored a Point!");
 			soundblock:playSound('LAVA_POP', 1000, 50);
-                        player:removeItemByName('Green Flag');
+			
+			table.insert(flagRemovalPipe, player);
+			flagRemovalTimer:start();
 			
 			blueScore = blueScore + 1; -- Add a point to the blue team.
 			checkScores(); -- Check the scores.
@@ -599,7 +603,9 @@ function blue_flag_score(data, key, location)
 			a_broadcast_npc(Overlord, data.player .. " &6has captured the &bBlue Flag&6!");
 			a_broadcast_npc(Overlord, "&aThe &2Green Team &ahas Scored a Point!");
 			soundblock:playSound('LAVA_POP', 1000, 50);
-                        player:removeItemByName("Blue Flag");
+			
+			table.insert(flagRemovalPipe, player);
+			flagRemovalTimer:start();
 			
 			greenScore = greenScore + 1; -- Add a point to the green team.
 			checkScores(); -- Check the scores.

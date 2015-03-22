@@ -1,2 +1,2 @@
 # Code4-CTF-Event
-LUA Code from the CTF Code 4 event on Runsafe Minecraft
+The script used for the Capture the flag event on runsafe. This script will be differen from the mini game' code. 

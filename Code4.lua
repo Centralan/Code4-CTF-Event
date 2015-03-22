@@ -115,7 +115,7 @@ function a_broadcast(msg)
 end
 
 function a_broadcast_npc(npc, msg)
-	a_broadcast('&f[C4] &b' .. npc .. '&f: ' .. msg);
+	a_broadcast('&f[?] &b' .. npc .. '&f: ' .. msg);
 end
 
 
@@ -127,6 +127,13 @@ function EventOverlord_Teams(data)
         local player = Player:new(data.player);
         a_broadcast_npc(Overlord, "&6Players are now being split into 2 teams at random. If you leave your box you will not play!", player);
          soundblock:playSound('ZOMBIE_UNFECT', 1000, 10);
+end
+
+function EventOverlord_Start60(data)
+        local player = Player:new(data.player);
+        a_broadcast_npc(Overlord, "&6Code 4 initializing in &d60 Seconds&6!", player);
+         soundblock:playSound('NOTE_PLING', 1000, 10);
+         soundblock:playSound('ORB_PICKUP', 1000, 10);
 end
 
 function EventOverlord_Start30(data)
@@ -157,11 +164,44 @@ function EventOverlord_Start5(data)
          soundblock:playSound('ORB_PICKUP', 1000, 10);
 end
 
-registerHook("INTERACT", "EventOverlord_Teams", 77, "Code4", -4, 86, -36);
-registerHook("INTERACT", "EventOverlord_Start30", 77, "Code4", -4, 86, -38);
-registerHook("INTERACT", "EventOverlord_Start15", 77, "Code4", -4, 86, -39);
-registerHook("INTERACT", "EventOverlord_Start10", 77, "Code4", -4, 86, -40);
-registerHook("INTERACT", "EventOverlord_Start5", 77, "Code4", -4, 86, -41);
+function EventOverlord_Start4(data)
+        local player = Player:new(data.player);
+        a_broadcast_npc(Overlord, "&6Code 4 initializing in &d4 Seconds&6!", player);
+         soundblock:playSound('NOTE_PLING', 1000, 10);
+         soundblock:playSound('ORB_PICKUP', 1000, 10);
+end
+
+function EventOverlord_Start3(data)
+        local player = Player:new(data.player);
+        a_broadcast_npc(Overlord, "&6Code 4 initializing in &d3 Seconds&6!", player);
+         soundblock:playSound('NOTE_PLING', 1000, 10);
+         soundblock:playSound('ORB_PICKUP', 1000, 10);
+end
+
+function EventOverlord_Start2(data)
+        local player = Player:new(data.player);
+        a_broadcast_npc(Overlord, "&6Code 4 initializing in &d2 Seconds&6!", player);
+         soundblock:playSound('NOTE_PLING', 1000, 10);
+         soundblock:playSound('ORB_PICKUP', 1000, 10);
+end
+
+function EventOverlord_Start1(data)
+        local player = Player:new(data.player);
+        a_broadcast_npc(Overlord, "&6Code 4 initializing in &d1 Seconds&6!", player);
+         soundblock:playSound('NOTE_PLING', 1000, 10);
+         soundblock:playSound('ORB_PICKUP', 1000, 10);
+end
+
+registerHook("INTERACT", "EventOverlord_Teams", 77, "Code4", -4, 86, -35);
+registerHook("INTERACT", "EventOverlord_Start60", 77, "Code4", -4, 88, -36);
+registerHook("INTERACT", "EventOverlord_Start30", 77, "Code4", -4, 86, -36);
+registerHook("INTERACT", "EventOverlord_Start15", 77, "Code4", -4, 88, -37);
+registerHook("INTERACT", "EventOverlord_Start10", 77, "Code4", -4, 86, -37);
+registerHook("INTERACT", "EventOverlord_Start5", 77, "Code4", -4, 88, -38);
+registerHook("INTERACT", "EventOverlord_Start4", 77, "Code4", -4, 86, -38);
+registerHook("INTERACT", "EventOverlord_Start3", 77, "Code4", -4, 88, -39);
+registerHook("INTERACT", "EventOverlord_Start2", 77, "Code4", -4, 86, -39);
+registerHook("INTERACT", "EventOverlord_Start1", 77, "Code4", -4, 86, -40);
 
 
 
@@ -1017,13 +1057,13 @@ function green_score_5()
 	end
 end
 
-registerHook("INTERACT", "green_blank", 77, "Code4", , 4, 88, -35);
-registerHook("INTERACT", "green_0", 77, "Code4", , 4, 88, -36);
-registerHook("INTERACT", "green_1", 77, "Code4", , 4, 88, -37);
-registerHook("INTERACT", "green_2", 77, "Code4", , 4, 88, -38);
-registerHook("INTERACT", "green_3", 77, "Code4", , 4, 88, -39);
-registerHook("INTERACT", "green_4", 77, "Code4", , 4, 88, -40);
-registerHook("INTERACT", "green_5", 77, "Code4", , 4, 88, -41);
+registerHook("INTERACT", "green_blank", 77, "Code4", 4, 88, -35);
+registerHook("INTERACT", "green_0", 77, "Code4", 4, 88, -36);
+registerHook("INTERACT", "green_1", 77, "Code4", 4, 88, -37);
+registerHook("INTERACT", "green_2", 77, "Code4", 4, 88, -38);
+registerHook("INTERACT", "green_3", 77, "Code4", 4, 88, -39);
+registerHook("INTERACT", "green_4", 77, "Code4", 4, 88, -40);
+registerHook("INTERACT", "green_5", 77, "Code4", 4, 88, -41);
 
 -- Blue Scoreboard
 --

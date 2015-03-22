@@ -1017,13 +1017,13 @@ function green_score_5()
 	end
 end
 
-registerHook("INTERACT", "green_blank", 77, "Code4", -2, 88, -36);
-registerHook("INTERACT", "green_0", 77, "Code4", -1, 88, -36);
-registerHook("INTERACT", "green_1", 77, "Code4", 0, 88, -36);
-registerHook("INTERACT", "green_2", 77, "Code4", 1, 88, -36);
-registerHook("INTERACT", "green_3", 77, "Code4", 2, 88, -36);
-registerHook("INTERACT", "green_4", 77, "Code4", 3, 88, -36);
-registerHook("INTERACT", "green_5", 77, "Code4", 4, 88, -36);
+registerHook("INTERACT", "green_blank", 77, "Code4", , 4, 88, -35);
+registerHook("INTERACT", "green_0", 77, "Code4", , 4, 88, -36);
+registerHook("INTERACT", "green_1", 77, "Code4", , 4, 88, -37);
+registerHook("INTERACT", "green_2", 77, "Code4", , 4, 88, -38);
+registerHook("INTERACT", "green_3", 77, "Code4", , 4, 88, -39);
+registerHook("INTERACT", "green_4", 77, "Code4", , 4, 88, -40);
+registerHook("INTERACT", "green_5", 77, "Code4", , 4, 88, -41);
 
 -- Blue Scoreboard
 --
@@ -1400,10 +1400,10 @@ function blue_score_5()
 	end
 end
 
-registerHook("INTERACT", "blue_blank", 77, "Code4", -2, 86, -36);
-registerHook("INTERACT", "blue_0", 77, "Code4", -1, 86, -36);
-registerHook("INTERACT", "blue_1", 77, "Code4", 0, 86, -36);
-registerHook("INTERACT", "blue_2", 77, "Code4", 1, 86, -36);
-registerHook("INTERACT", "blue_3", 77, "Code4", 2, 86, -36);
-registerHook("INTERACT", "blue_4", 77, "Code4", 3, 86, -36);
-registerHook("INTERACT", "blue_5", 77, "Code4", 4, 86, -36);
+registerHook("INTERACT", "blue_blank", 77, "Code4", 4, 86, -35);
+registerHook("INTERACT", "blue_0", 77, "Code4", 4, 86, -36);
+registerHook("INTERACT", "blue_1", 77, "Code4", 4, 86, -37);
+registerHook("INTERACT", "blue_2", 77, "Code4", 4, 86, -38);
+registerHook("INTERACT", "blue_3", 77, "Code4", 4, 86, -39);
+registerHook("INTERACT", "blue_4", 77, "Code4", 4, 86, -40);
+registerHook("INTERACT", "blue_5", 77, "Code4", 4, 86, -41);

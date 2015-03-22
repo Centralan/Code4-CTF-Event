@@ -581,6 +581,7 @@ function green_flag_score(data, key, location)
 			a_broadcast_npc(Overlord, data.player .. " &6has captured the Green Flag!");
 			a_broadcast_npc(Overlord, "&bThe &9Blue Team &bhas Scored a Point!");
 			soundblock:playSound('LAVA_POP', 1000, 50);
+			greenFlagIsTaken = false;
 			
 			table.insert(flagRemovalPipe, player);
 			flagRemovalTimer:start();
@@ -603,6 +604,7 @@ function blue_flag_score(data, key, location)
 			a_broadcast_npc(Overlord, data.player .. " &6has captured the &bBlue Flag&6!");
 			a_broadcast_npc(Overlord, "&aThe &2Green Team &ahas Scored a Point!");
 			soundblock:playSound('LAVA_POP', 1000, 50);
+			blueFlagIsTaken = false;
 			
 			table.insert(flagRemovalPipe, player);
 			flagRemovalTimer:start();

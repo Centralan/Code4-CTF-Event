@@ -233,7 +233,7 @@ function Blue_Team_Gear(data)
 		BluePlayers[player.name] = true;
 		BlueGearChest:cloneChestToPlayer(player.name);
                 BlueTeamGearUp:playSound('HORSE_SADDLE', 1, 0);
-                a_broadcast_npc(Overlord, "&6Both Teams have been teleported to thier bases!", player);
+                a_broadcast_npc(Overlord, "&6Both Teams have been teleported to their bases!", player);
                 a_broadcast_npc(Overlord, "&eGear up and get ready!", player);
                 soundblock:playSound('ZOMBIE_UNFECT', 1000, 10);
 	end
@@ -418,6 +418,10 @@ function player_respawn(data)
 end
 
 registerHook("PLAYER_DEATH", "player_respawn", "Code4");
+
+
+-- Gear Respawn
+--
 
 
 

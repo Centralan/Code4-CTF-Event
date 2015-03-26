@@ -382,6 +382,7 @@ function handleGraveyard()
 		local player = Player:new(playerName);
 		
 		-- Make sure the player is still online and in the right world.
+                -- Bug: Editing this will cause the player to keep tping, DO NOT EDIT.
 		if player:isOnline() and player:getLocation() == world.name then
 			if isPlayerOnGreenTeam(player.name) then
 				player:teleport(greenRespawns[math.random(1, #greenRespawns)]);
@@ -414,16 +415,16 @@ function player_respawn(data)
         targetPlayer:teleport(moveTo); -- Teleport to the graveyard.
         a_broadcast_npc(Overlord, data.player .. " has died."); -- Annouce the death in chat.
 		graveyardPlayers[targetPlayer.name] = true; -- Mark the player as dead so they will respawn.
-	end
+           if isPlayerOnGreenTeam(targetPlayer.name) then
+             GreenGearChest:cloneChestToPlayer(targetPlayer.name);
+           if isPlayerOnBlueTeam(targetPlayer.name) then
+             BlueGearChest:cloneChestToPlayer(targetPlayer.name);
+         end
+      end
+   end
 end
 
 registerHook("PLAYER_DEATH", "player_respawn", "Code4");
-
-
--- Gear Respawn
---
-
-
 
 -- Flag Get
 --

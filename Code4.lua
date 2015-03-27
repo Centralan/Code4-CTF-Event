@@ -405,8 +405,21 @@ function player_respawn(data)
 	-- Check which team the player is on and set moveTo to their spawn.
     if isPlayerOnBlueTeam(targetPlayer.name) then
 		moveTo = blueSpawnPoint;
+		
+		if targetPlayer:hasItemWithName('Green Flag') then
+			greenFlagIsTaken = false;	
+			a_broadcast_npc(Overlord, targetPlayer.name .. " has died with the &aGreen Flag&f!");
+			soundblock:playSound('LAVA_POP', 1000, 50);
+		end
+		
       elseif isPlayerOnGreenTeam(targetPlayer.name) then
 		moveTo = greenSpawnPoint;
+		
+		if targetPlayer:hasItemWithName('Blue Flag') then
+			blueFlagIsTaken = false;
+			a_broadcast_npc(Overlord, targetPlayer.name .. " has died with the &9Blue Flag&f!");
+			soundblock:playSound('LAVA_POP', 1000, 50);
+		end
     end
 	
 	if moveTo ~= nil then

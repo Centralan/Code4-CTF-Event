@@ -417,9 +417,8 @@ function player_respawn(data)
 		graveyardPlayers[targetPlayer.name] = true; -- Mark the player as dead so they will respawn.
            if isPlayerOnGreenTeam(targetPlayer.name) then
              GreenGearChest:cloneChestToPlayer(targetPlayer.name);
-           if isPlayerOnBlueTeam(targetPlayer.name) then
+           elseif isPlayerOnBlueTeam(targetPlayer.name) then
              BlueGearChest:cloneChestToPlayer(targetPlayer.name);
-         end
       end
    end
 end

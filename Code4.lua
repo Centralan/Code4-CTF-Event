@@ -413,22 +413,9 @@ function player_respawn(data)
 
 	-- Check which team the player is on and set moveTo to their spawn.
     if isPlayerOnBlueTeam(targetPlayer.name) then
-		moveTo = blueSpawnPoint;
-		
-		if targetPlayer:hasItemWithName('Green Flag') then
-			greenFlagIsTaken = false;	
-			a_broadcast_npc(Overlord, targetPlayer.name .. " has died with the &aGreen Flag&f!");
-			soundblock:playSound('LAVA_POP', 1000, 50);
-		end
-		
+		moveTo = blueSpawnPoint;		
       elseif isPlayerOnGreenTeam(targetPlayer.name) then
 		moveTo = greenSpawnPoint;
-		
-		if targetPlayer:hasItemWithName('Blue Flag') then
-			blueFlagIsTaken = false;
-			a_broadcast_npc(Overlord, targetPlayer.name .. " has died with the &9Blue Flag&f!");
-			soundblock:playSound('LAVA_POP', 1000, 50);
-		end
     end
 	
 	if moveTo ~= nil then
@@ -437,15 +424,36 @@ function player_respawn(data)
         targetPlayer:teleport(moveTo); -- Teleport to the graveyard.
         a_broadcast_npc(Overlord, data.player .. " has died."); -- Annouce the death in chat.
 		graveyardPlayers[targetPlayer.name] = true; -- Mark the player as dead so they will respawn.
-           if isPlayerOnGreenTeam(targetPlayer.name) then
-             GreenGearChest:cloneChestToPlayer(targetPlayer.name);
-           elseif isPlayerOnBlueTeam(targetPlayer.name) then
-             BlueGearChest:cloneChestToPlayer(targetPlayer.name);
+		
+		if isPlayerOnGreenTeam(targetPlayer.name) then
+			GreenGearChest:cloneChestToPlayer(targetPlayer.name);
+		elseif isPlayerOnBlueTeam(targetPlayer.name) then
+			BlueGearChest:cloneChestToPlayer(targetPlayer.name);
       end
    end
 end
 
 registerHook("PLAYER_DEATH", "player_respawn", "Code4");
+
+function player_damage(data)
+	if data.damage >= data.playerHealth then
+		-- The player just took fatal damage.
+		local player = Player:new(data.player);
+		if isPlayerOnGreenTeam(player.name) and hasItemWithName('Blue Flag') then
+			player:removeItemByName('Blue Flag');
+			blueFlagIsTaken = false;
+			a_broadcast_npc(Overlord, player.name .. " has died with the &9Blue Flag&f!");
+			soundblock:playSound('LAVA_POP', 1000, 50);
+		elseif isPlayerOnBlueTeam(player.name) and hasItemWithName('Green Flag') then
+			player:removeItemByName('Green Flag');
+			greenFlagIsTaken = false;	
+			a_broadcast_npc(Overlord, player.name .. " has died with the &aGreen Flag&f!");
+			soundblock:playSound('LAVA_POP', 1000, 50);
+		end
+	end
+end
+
+registerHook("PLAYER_DAMAGE", "player_damage", "Code4");
 
 -- Flag Get
 --
@@ -524,11 +532,11 @@ function item_pickup(data)
 				table.insert(flagRemovalPipe, player);
 				flagRemovalTimer:start();
 				a_broadcast_npc(Overlord, player.name .. " has returned the &9Blue Flag&f!");
-                                         soundblock:playSound('LAVA_POP', 1000, 50);
+				soundblock:playSound('LAVA_POP', 1000, 50);
 			else
 				-- The player has picked up the enemy flag, what a bastard!
 				a_broadcast_npc(Overlord, player.name .. " has picked up the &9Blue Flag&f!");
-                                         soundblock:playSound('LAVA_POP', 1000, 50);
+				soundblock:playSound('LAVA_POP', 1000, 50);
 			end
 		elseif data.itemName == "Green Flag" then
 			-- Green flag was picked up.
@@ -538,11 +546,11 @@ function item_pickup(data)
 				table.insert(flagRemovalPipe, player);
 				flagRemovalTimer:start();
 				a_broadcast_npc(Overlord, player.name .. " has returned the &aGreen Flag&f!");
-                                         soundblock:playSound('LAVA_POP', 1000, 50);
+				soundblock:playSound('LAVA_POP', 1000, 50);
 			else
 				-- The player has picked up the enemy flag, what a bastard!
 				a_broadcast_npc(Overlord, player.name .. " has picked up the &aGreen Flag&f!");
-                                         soundblock:playSound('LAVA_POP', 1000, 50);
+				soundblock:playSound('LAVA_POP', 1000, 50);
 			end
 		end
 end

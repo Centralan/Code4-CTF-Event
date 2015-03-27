@@ -422,7 +422,7 @@ function player_respawn(data)
 		targetPlayer:clearInventory(); -- Wipe the players inventory.
         targetPlayer:setHealth(20); -- Set their health back to full.
         targetPlayer:teleport(moveTo); -- Teleport to the graveyard.
-        a_broadcast_npc(Overlord, data.player .. " has died."); -- Annouce the death in chat.
+        --a_broadcast_npc(Overlord, data.player .. " has died."); -- Annouce the death in chat.
 		graveyardPlayers[targetPlayer.name] = true; -- Mark the player as dead so they will respawn.
 		
 		if isPlayerOnGreenTeam(targetPlayer.name) then
@@ -439,16 +439,18 @@ function player_damage(data)
 	if data.damage >= data.playerHealth then
 		-- The player just took fatal damage.
 		local player = Player:new(data.player);
-		if isPlayerOnGreenTeam(player.name) and hasItemWithName('Blue Flag') then
+		if isPlayerOnGreenTeam(player.name) and player:hasItemWithName('Blue Flag') then
 			player:removeItemByName('Blue Flag');
 			blueFlagIsTaken = false;
 			a_broadcast_npc(Overlord, player.name .. " has died with the &9Blue Flag&f!");
 			soundblock:playSound('LAVA_POP', 1000, 50);
-		elseif isPlayerOnBlueTeam(player.name) and hasItemWithName('Green Flag') then
+		elseif isPlayerOnBlueTeam(player.name) and player:hasItemWithName('Green Flag') then
 			player:removeItemByName('Green Flag');
 			greenFlagIsTaken = false;	
 			a_broadcast_npc(Overlord, player.name .. " has died with the &aGreen Flag&f!");
 			soundblock:playSound('LAVA_POP', 1000, 50);
+		else
+			a_broadcast_npc(Overlord, player.name .. " has died.");
 		end
 	end
 end

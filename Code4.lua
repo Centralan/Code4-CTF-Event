@@ -505,9 +505,11 @@ function item_pickup(data)
 				table.insert(flagRemovalPipe, player);
 				flagRemovalTimer:start();
 				a_broadcast_npc(Overlord, player.name .. " has returned the &9Blue Flag&f!");
+                                         soundblock:playSound('LAVA_POP', 1000, 50);
 			else
 				-- The player has picked up the enemy flag, what a bastard!
 				a_broadcast_npc(Overlord, player.name .. " has picked up the &9Blue Flag&f!");
+                                         soundblock:playSound('LAVA_POP', 1000, 50);
 			end
 		elseif data.itemName == "Green Flag" then
 			-- Green flag was picked up.
@@ -517,9 +519,11 @@ function item_pickup(data)
 				table.insert(flagRemovalPipe, player);
 				flagRemovalTimer:start();
 				a_broadcast_npc(Overlord, player.name .. " has returned the &aGreen Flag&f!");
+                                         soundblock:playSound('LAVA_POP', 1000, 50);
 			else
 				-- The player has picked up the enemy flag, what a bastard!
 				a_broadcast_npc(Overlord, player.name .. " has picked up the &aGreen Flag&f!");
+                                         soundblock:playSound('LAVA_POP', 1000, 50);
 			end
 		end
 end
@@ -535,6 +539,7 @@ function green_down(data, key, location)
          local player = Player:new(data.player);
          if data.itemName == ("Green Flag") then
          a_broadcast_npc(Overlord, data.player .. " has dropped the &aGreen Flag&f!");
+         soundblock:playSound('LAVA_POP', 1000, 50);
     end
 end
 
@@ -542,6 +547,7 @@ function blue_down(data, key, location)
          local player = Player:new(data.player);
          if data.itemName == ("Blue Flag") then
          a_broadcast_npc(Overlord, data.player .. " has dropped the &9Blue Flag&f!");
+         soundblock:playSound('LAVA_POP', 1000, 50);
     end
 end
 
@@ -597,7 +603,7 @@ function green_flag_score(data, key, location)
 		if not blueFlagIsTaken then
 			a_broadcast_npc(Overlord, data.player .. " &6has captured the Green Flag!");
 			a_broadcast_npc(Overlord, "&bThe &9Blue Team &bhas Scored a Point!");
-			soundblock:playSound('LAVA_POP', 1000, 50);
+			soundblock:playSound('PORTAL_TRAVEL', 1000, 50);
 			greenFlagIsTaken = false;
 			
 			table.insert(flagRemovalPipe, player);
@@ -618,7 +624,7 @@ function blue_flag_score(data, key, location)
 		if not greenFlagIsTaken then
 			a_broadcast_npc(Overlord, data.player .. " &6has captured the &bBlue Flag&6!");
 			a_broadcast_npc(Overlord, "&aThe &2Green Team &ahas Scored a Point!");
-			soundblock:playSound('LAVA_POP', 1000, 50);
+			soundblock:playSound('PORTAL_TRAVEL', 1000, 50);
 			blueFlagIsTaken = false;
 			
 			table.insert(flagRemovalPipe, player);

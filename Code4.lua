@@ -1,3 +1,6 @@
+local greenFlagIsTaken = false;
+local blueFlagIsTaken = false;
+
 -- Create a new array.
 local blueTeamPlayers = {};
 
@@ -95,6 +98,12 @@ function chatMonitor(data)
 			end
 			
 			player:sendMessage("green team: " .. table.concat(tempPlayerList, ","));
+		elseif hasPrefix(message, "#ResetGreen") then
+			greenFlagIsTaken = false;
+			player:sendMessage("&aGreen Flag Reset");
+		elseif hasPrefix(message, "#ResetBlue") then
+			blueFlagIsTaken = false;
+			player:sendMessage("&bBlue Flag Reset");
 		end
 	end
 end
@@ -443,9 +452,6 @@ registerHook("PLAYER_DEATH", "player_respawn", "Code4");
 
 local bluefChest = Location:new(world, 2, 85, -43);
 local greenfChest = Location:new(world, 3, 86, -43);
-
-local greenFlagIsTaken = false;
-local blueFlagIsTaken = false;
 
 function get_blue_flag(data)
 	local player = Player:new(data.player);

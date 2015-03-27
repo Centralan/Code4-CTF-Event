@@ -115,7 +115,7 @@ function a_broadcast(msg)
 end
 
 function a_broadcast_npc(npc, msg)
-	a_broadcast('&f[?] &b' .. npc .. '&f: ' .. msg);
+	a_broadcast('&f[Code4] &b' .. npc .. '&f: ' .. msg);
 end
 
 

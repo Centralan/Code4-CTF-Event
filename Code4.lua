@@ -174,7 +174,7 @@ function EventOverlord_how_respawn(data)
         a_broadcast_npc_r(Rules, "&6[2] Your current gear will be wiped, and you will get fresh gear.", player);
         a_broadcast_npc_r(Rules, "&e[3] The waiting area will serve as a delayed respawn.", player);
         a_broadcast_npc_r(Rules, "&6[4] Once time is up you will respawn on your side of the arena randomly.", player);
-        a_broadcast_npc_r(Rules, "&e[*] &oBug, there is a rare chance players will respawn much fast as intended.", player);
+        a_broadcast_npc_r(Rules, "&e[*] &oBug, there is a rare chance players will respawn much faster as intended.", player);
         a_broadcast_npc_r(Rules, "&c--------------------", player);
          soundblock:playSound('ZOMBIE_UNFECT', 1000, 10);
 end

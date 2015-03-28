@@ -118,6 +118,7 @@ registerHook("CHAT_MESSAGE", "chatMonitor", "Code4");
 local world = World:new('Code4');
 local soundblock = Location:new(world, 0, 93, -30);
 local Overlord = 'Symvan'
+local Rules = ''
 
 function a_broadcast(msg)
 	world:broadcast(msg);
@@ -125,6 +126,10 @@ end
 
 function a_broadcast_npc(npc, msg)
 	a_broadcast('&f &b' .. npc .. '&f: ' .. msg);
+end
+
+function a_broadcast_npc_r(npc, msg)
+	a_broadcast('&f &b' .. npc .. '&f' .. msg);
 end
 
 
@@ -135,6 +140,42 @@ end
 function EventOverlord_Teams(data)
         local player = Player:new(data.player);
         a_broadcast_npc(Overlord, "&6Players are now being split into 2 teams at random. If you leave your box you will not play!", player);
+         soundblock:playSound('ZOMBIE_UNFECT', 1000, 10);
+end
+
+function EventOverlord_how_score(data)
+        local player = Player:new(data.player);
+        a_broadcast_npc_r(Rules, "&c--------------------", player);
+        a_broadcast_npc_r(Rules, "&6&lHow To Score:", player);
+        a_broadcast_npc_r(Rules, "&eGo to the enemy base.", player);
+        a_broadcast_npc_r(Rules, "&6Walk over the pad (If nothing happens flag is already taken.)", player);
+        a_broadcast_npc_r(Rules, "&eWalk over your teams pad with the flag to score!", player);
+        a_broadcast_npc_r(Rules, "&c--------------------", player);
+         soundblock:playSound('ZOMBIE_UNFECT', 1000, 10);
+end
+
+function EventOverlord_how_return(data)
+        local player = Player:new(data.player);
+        a_broadcast_npc_r(Rules, "&c--------------------", player);
+        a_broadcast_npc_r(Rules, "&6&lHow To Return The Flags:", player);
+        a_broadcast_npc_r(Rules, "&e[1] Kill the enemy player holding your flag.", player);
+        a_broadcast_npc_r(Rules, "&6[2] Pick your flag up off the ground.", player);
+        a_broadcast_npc_r(Rules, "&e[3] Score the flag. Scoring a flag will reset it.", player);
+        a_broadcast_npc_r(Rules, "&6[*] &oIf needed the Admins can reset flags.", player);
+        a_broadcast_npc_r(Rules, "&c--------------------", player);
+         soundblock:playSound('ZOMBIE_UNFECT', 1000, 10);
+end
+
+function EventOverlord_how_respawn(data)
+        local player = Player:new(data.player);
+        a_broadcast_npc_r(Rules, "&c--------------------", player);
+        a_broadcast_npc_r(Rules, "&6&lHow Respawning Works:", player);
+        a_broadcast_npc_r(Rules, "&e[1] When you die, you will be teleported to a waiting area.", player);
+        a_broadcast_npc_r(Rules, "&6[2] Your current gear will be wiped, and you will get fresh gear.", player);
+        a_broadcast_npc_r(Rules, "&e[3] The waiting area will serve as a delayed respawn.", player);
+        a_broadcast_npc_r(Rules, "&6[4] Once time is up you will respawn on your side of the arena randomly.", player);
+        a_broadcast_npc_r(Rules, "&e[*] &oBug, there is a rare chance players will respawn much fast as intended.", player);
+        a_broadcast_npc_r(Rules, "&c--------------------", player);
          soundblock:playSound('ZOMBIE_UNFECT', 1000, 10);
 end
 
@@ -167,6 +208,9 @@ function EventOverlord_Start5(data)
 end
 
 registerHook("INTERACT", "EventOverlord_Teams", 77, "Code4", -4, 86, -35);
+registerHook("INTERACT", "EventOverlord_how_score", 77, "Code4", -4, 86, -38);
+registerHook("INTERACT", "EventOverlord_how_return", 77, "Code4", -4, 86, -39);
+registerHook("INTERACT", "EventOverlord_how_respawn", 77, "Code4", -4, 86, -40);
 registerHook("INTERACT", "EventOverlord_Start30", 77, "Code4", -4, 88, -36);
 registerHook("INTERACT", "EventOverlord_Start15", 77, "Code4", -4, 86, -36);
 registerHook("INTERACT", "EventOverlord_Start10", 77, "Code4", -4, 88, -37);

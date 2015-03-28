@@ -157,11 +157,11 @@ end
 function EventOverlord_how_return(data)
         local player = Player:new(data.player);
         a_broadcast_npc_r(Rules, "&c--------------------", player);
-        a_broadcast_npc_r(Rules, "&6&lHow To Return The Flags:", player);
-        a_broadcast_npc_r(Rules, "&e[1] Kill the enemy player holding your flag.", player);
-        a_broadcast_npc_r(Rules, "&6[2] Pick your flag up off the ground.", player);
-        a_broadcast_npc_r(Rules, "&e[3] Score the flag. Scoring a flag will reset it.", player);
-        a_broadcast_npc_r(Rules, "&6[*] &oIf needed the Admins can reset flags.", player);
+        a_broadcast_npc_r(Rules, "&2&lHow To Return The Flags:", player);
+        a_broadcast_npc_r(Rules, "&a[1] Kill the enemy player holding your flag.", player);
+        a_broadcast_npc_r(Rules, "&2[2] Pick your flag up off the ground.", player);
+        a_broadcast_npc_r(Rules, "&a[3] Score the flag. Scoring a flag will reset it.", player);
+        a_broadcast_npc_r(Rules, "&2[*] &oIf needed the Admins can reset flags.", player);
         a_broadcast_npc_r(Rules, "&c--------------------", player);
          soundblock:playSound('ZOMBIE_UNFECT', 1000, 10);
 end

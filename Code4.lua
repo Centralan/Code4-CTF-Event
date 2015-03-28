@@ -454,7 +454,7 @@ function player_damage(data)
 			a_broadcast_npc(Overlord, player.name .. " has died with the &aGreen Flag&f!");
 			soundblock:playSound('LAVA_POP', 1000, 50);
 		else
-			a_broadcast_npc(Overlord, player.name .. " has died.");
+			--a_broadcast_npc(Overlord, player.name .. " has died.");
 		end
 	end
 end
@@ -603,12 +603,14 @@ function checkScores()
 		matchComplete();
 		
 		a_broadcast_npc(Overlord, "&bThe &9Blue Team &bhas won CTF!");
-for index, playerName in pairs(players) do
-    if isPlayerOnBlueTeam(playerName) then
-        local player = Player:new(playerName);
-        player:sendEvent("achievement.ctfeventmarchvictor");
-    end
-end
+		
+		for index, playerName in pairs(players) do
+			if isPlayerOnBlueTeam(playerName) then
+				local player = Player:new(playerName);
+                                player:clearInventory();
+				player:sendEvent("achievement.ctfeventmarchvictor");
+			end
+		end
 		
 		return;
 	end
@@ -618,12 +620,13 @@ end
 		matchComplete();
 		
 		a_broadcast_npc(Overlord, "&aThe &2Green Team &ahas won CTF!");
-                for index, playerName in pairs(players) do
-    if isPlayerOnGreenTeam(playerName) then
-        local player = Player:new(playerName);
-        player:sendEvent("achievement.ctfeventmarchvictor");
-    end
-end
+		for index, playerName in pairs(players) do
+			if isPlayerOnGreenTeam(playerName) then
+				local player = Player:new(playerName);
+                                player:clearInventory();
+				player:sendEvent("achievement.ctfeventmarchvictor");
+			end
+		end
 		
 		return;
 	end
@@ -655,7 +658,7 @@ function blue_flag_score(data, key, location)
 		
 	if player:hasItemWithName('Blue Flag') then
 		if not greenFlagIsTaken then
-			a_broadcast_npc(Overlord, data.player .. " &6has captured the &bBlue Flag&6!");
+			a_broadcast_npc(Overlord, data.player .. " &6has captured the &9Blue Flag&6!");
 			a_broadcast_npc(Overlord, "&aThe &2Green Team &ahas Scored a Point!");
 			soundblock:playSound('PORTAL_TRAVEL', 1000, 50);
 			blueFlagIsTaken = false;
@@ -687,6 +690,7 @@ function matchComplete()
     for index, playerName in pairs(players) do
         local player = Player:new(playerName);
         player:teleport(startLocation);
+        player:clearInventory();
     end
 end
 
